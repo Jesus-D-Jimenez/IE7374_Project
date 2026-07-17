@@ -1,0 +1,12 @@
+{"id": "fact_000", "type": "factual_recall", "prompt": "The capital of France is", "correct": " Paris", "incorrect": " London", "contrast_id": null}
+{"id": "fact_001", "type": "factual_recall", "prompt": "The capital of Japan is", "correct": " Tokyo", "incorrect": " Beijing", "contrast_id": null}
+{"id": "fact_002", "type": "factual_recall", "prompt": "The capital of Italy is", "correct": " Rome", "incorrect": " Madrid", "contrast_id": null}
+{"id": "fact_003", "type": "factual_recall", "prompt": "The capital of Egypt is", "correct": " Cairo", "incorrect": " Nairobi", "contrast_id": null}
+{"id": "fact_004", "type": "factual_recall", "prompt": "The capital of Canada is", "correct": " Ottawa", "incorrect": " Toronto", "contrast_id": null}
+{"id": "fact_005", "type": "factual_recall", "prompt": "The capital of Russia is", "correct": " Moscow", "incorrect": " Kiev", "contrast_id": null}
+{"id": "fact_006", "type": "factual_recall", "prompt": "The capital of Spain is", "correct": " Madrid", "incorrect": " Lisbon", "contrast_id": null}
+{"id": "fact_007", "type": "factual_recall", "prompt": "The capital of Germany is", "correct": " Berlin", "incorrect": " Munich", "contrast_id": null}
+{"id": "fact_008", "type": "factual_recall", "prompt": "The Eiffel Tower is located in the city of", "correct": " Paris", "incorrect": " Rome", "contrast_id": null}
+{"id": "fact_009", "type": "factual_recall", "prompt": "The Colosseum is located in the city of", "correct": " Rome", "incorrect": " Athens", "contrast_id": null}
+{"id": "fact_010", "type": "factual_recall", "prompt": "Mount Everest is located in the country of", "correct": " Nepal", "incorrect": " India", "contrast_id": null}
+{"id": "fact_011", "type": "factual_recall", "prompt": "The Great Barrier Reef is located in", "correct": " Australia", "incorrect": " Brazil", "contrast_id": null}
