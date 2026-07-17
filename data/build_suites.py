@@ -20,7 +20,9 @@ PROMPTS_DIR = os.path.join(HERE, "prompts")
 def write_jsonl(name, rows):
     os.makedirs(PROMPTS_DIR, exist_ok=True)
     path = os.path.join(PROMPTS_DIR, name)
-    with open(path, "w", encoding="utf-8") as f:
+    # newline="\n" forces LF on every platform so the committed files are byte-for-byte
+    # reproducible (Windows text mode would otherwise write CRLF and break the CI check).
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         for r in rows:
             f.write(json.dumps(r) + "\n")
     print(f"wrote {len(rows):3d} rows -> {os.path.relpath(path, HERE)}")
@@ -157,7 +159,7 @@ def build_edit_targets():
         },
     ]
     path = os.path.join(HERE, "edit_targets.json")
-    with open(path, "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(targets, f, indent=2)
     print(f"wrote {len(targets):3d} edit targets -> {os.path.relpath(path, HERE)}")
 

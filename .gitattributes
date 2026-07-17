@@ -1,0 +1,4 @@
+# Generated data suites must stay LF so `python data/build_suites.py` is byte-for-byte
+# reproducible on the Linux CI runner (see the "Verify datasets are reproducible" job).
+*.jsonl text eol=lf
+data/edit_targets.json text eol=lf
