@@ -1,0 +1,23 @@
+# Default configuration for all experiments.
+# Override any field on the command line, e.g.:  python scripts/run_edit.py --model pythia-410m
+
+model_name: pythia-160m      # main model; comparison model is gpt2 (see Experiment 5)
+device: auto                 # auto | cpu | cuda
+seed: 0
+
+# --- Data ---
+data_dir: data
+results_dir: results
+
+# --- Causal tracing (Experiment 3) ---
+noise_scale: 3.0             # subject-corruption noise, in units of embedding std (Meng et al.)
+
+# --- ROME-style edit (Experiment 4) ---
+edit_lr: 0.5                 # Adam LR for the v* optimization
+edit_steps: 25              # optimization steps
+edit_kl_weight: 0.0625      # L2 penalty on the injected delta (keeps the edit small)
+edit_layer: auto            # auto = pick the causal-trace peak at the subject's last token
+
+# --- Generation / evaluation ---
+gen_max_new_tokens: 30
+gen_do_sample: false        # greedy decoding for reproducible before/after comparisons

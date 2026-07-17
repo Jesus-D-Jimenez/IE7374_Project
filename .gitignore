@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+.python-version
+
+# Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Hugging Face / model caches
+.cache/
+hf_cache/
+*.safetensors
+*.bin
+
+# Experiment outputs (keep the folder, ignore heavy artifacts)
+results/*
+!results/.gitkeep
+*.png
+!docs/**/*.png
+*.pt
+*.ckpt
