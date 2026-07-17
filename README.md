@@ -1,5 +1,8 @@
 # Opening the Black Box
 
+[![CI](https://github.com/Jesus-D-Jimenez/IE7374_Project/actions/workflows/ci.yml/badge.svg)](https://github.com/Jesus-D-Jimenez/IE7374_Project/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Mechanistic interpretability + ROME-style factual editing of small generative language models.**
 
 Group 25 · Jesus D. Jimenez Ballestas · IE7374 (Generative AI)
