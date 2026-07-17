@@ -1,0 +1,16 @@
+{"id": "ind_000_a", "type": "induction", "prompt": "AliceBob Alice", "correct": "Bob", "incorrect": "Carol", "contrast_id": "ind_000_b"}
+{"id": "ind_000_b", "type": "induction", "prompt": "AliceCarol Alice", "correct": "Carol", "incorrect": "Bob", "contrast_id": "ind_000_a"}
+{"id": "ind_001_a", "type": "induction", "prompt": "applebanana apple", "correct": "banana", "incorrect": "cherry", "contrast_id": "ind_001_b"}
+{"id": "ind_001_b", "type": "induction", "prompt": "applecherry apple", "correct": "cherry", "incorrect": "banana", "contrast_id": "ind_001_a"}
+{"id": "ind_002_a", "type": "induction", "prompt": "northsouth north", "correct": "south", "incorrect": "west", "contrast_id": "ind_002_b"}
+{"id": "ind_002_b", "type": "induction", "prompt": "northwest north", "correct": "west", "incorrect": "south", "contrast_id": "ind_002_a"}
+{"id": "ind_003_a", "type": "induction", "prompt": "MondayTuesday Monday", "correct": "Tuesday", "incorrect": "Friday", "contrast_id": "ind_003_b"}
+{"id": "ind_003_b", "type": "induction", "prompt": "MondayFriday Monday", "correct": "Friday", "incorrect": "Tuesday", "contrast_id": "ind_003_a"}
+{"id": "ind_004_a", "type": "induction", "prompt": "ironcopper iron", "correct": "copper", "incorrect": "silver", "contrast_id": "ind_004_b"}
+{"id": "ind_004_b", "type": "induction", "prompt": "ironsilver iron", "correct": "silver", "incorrect": "copper", "contrast_id": "ind_004_a"}
+{"id": "ind_005_a", "type": "induction", "prompt": "rivermountain river", "correct": "mountain", "incorrect": "desert", "contrast_id": "ind_005_b"}
+{"id": "ind_005_b", "type": "induction", "prompt": "riverdesert river", "correct": "desert", "incorrect": "mountain", "contrast_id": "ind_005_a"}
+{"id": "ind_006_a", "type": "induction", "prompt": "guitarpiano guitar", "correct": "piano", "incorrect": "violin", "contrast_id": "ind_006_b"}
+{"id": "ind_006_b", "type": "induction", "prompt": "guitarviolin guitar", "correct": "violin", "incorrect": "piano", "contrast_id": "ind_006_a"}
+{"id": "ind_007_a", "type": "induction", "prompt": "MercuryVenus Mercury", "correct": "Venus", "incorrect": "Saturn", "contrast_id": "ind_007_b"}
+{"id": "ind_007_b", "type": "induction", "prompt": "MercurySaturn Mercury", "correct": "Saturn", "incorrect": "Venus", "contrast_id": "ind_007_a"}
