@@ -1,0 +1,18 @@
+{
+  "subject": "The Eiffel Tower",
+  "prompt": "The Eiffel Tower is located in the city of",
+  "true": "Paris",
+  "new": "Rome",
+  "model_name": "pythia-160m",
+  "layer": 6,
+  "subject_last_token_position": 5,
+  "steps": 25,
+  "lr": 0.5,
+  "l2_penalty": 0.0625,
+  "loss_first": 6.738,
+  "loss_final": 3.4105,
+  "delta_norm": 6.5268,
+  "v_orig_norm": 6.929,
+  "seconds": 3.8,
+  "tensor_file": "outputs/edits/edit_the_eiffel_tower.pt"
+}

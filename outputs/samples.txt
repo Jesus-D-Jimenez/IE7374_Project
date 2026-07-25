@@ -1,0 +1,184 @@
+==============================================================================
+GENERATED SAMPLES — Opening the Black Box (Phase 2 pipeline)
+==============================================================================
+model        : pythia-160m (162,334,848 parameters, 12 layers)
+device       : cpu
+decoding     : greedy, max_new_tokens=30, seed=0
+generated at : 2026-07-25 11:53:30 (UTC)
+command      : python.exe src/model_runner.py
+
+------------------------------------------------------------------------------
+PART A — behavioral prompts: next-token prediction + continuation
+------------------------------------------------------------------------------
+Each sample shows what the model predicts next, how strongly it prefers the correct
+answer over the matched incorrect one (logit difference; positive = correct), and a
+greedy continuation. These are the measurements Experiments 1-3 are built on.
+
+[S01] suite=agreement  split=train  id=agr_005_p
+  prompt        : The senators from the state
+  correct/wrong : 'are' (-3.74)  vs  'is' (-7.63)
+  logit diff    : +3.894  -> model prefers the correct answer
+  top-5 next    : ' of' -0.73, ' Senate' -3.19, ' are' -3.74, ' have' -3.81, ' legislature' -3.84
+  continuation  : of New York have been working on a bill that would allow the state to use the federal money to pay for the state’s transportation infrastructure.
+  fluency       : 4.996  (mean 2/3-gram entropy of the generation)
+
+[S02] suite=factual_recall  split=test  id=fact_006
+  prompt        : The capital of Spain is
+  correct/wrong : 'Madrid' (-5.21)  vs  'Lisbon' (-8.92)
+  logit diff    : +3.713  -> model prefers the correct answer
+  top-5 next    : ' the' -2.48, ' in' -2.97, ' located' -3.04, ' a' -3.12, ' being' -3.44
+  continuation  : the capital of the world, and the most important city in the world. The capital of Spain is the capital of the world, and the
+  fluency       : 4.28  (mean 2/3-gram entropy of the generation)
+
+[S03] suite=induction  split=train  id=ind_001_a
+  prompt        : applebanana apple
+  correct/wrong : 'banana' (-4.56)  vs  'cherry' (-8.82)
+  logit diff    : +4.258  -> model prefers the correct answer
+  top-5 next    : 'ban' -0.97, '\n' -2.60, 'b' -3.65, ' ban' -3.67, '-' -4.13
+  continuation  : banana applebanana applebanana applebanana applebanana applebanana applebanana applebanana applebanana applebanana
+  fluency       : 2.182  (mean 2/3-gram entropy of the generation)
+
+[S04] suite=agreement  split=test  id=agr_009_p
+  prompt        : The players on the team
+  correct/wrong : 'are' (-1.79)  vs  'is' (-6.25)
+  logit diff    : +4.458  -> model prefers the correct answer
+  top-5 next    : ' are' -1.79, ' have' -2.04, ' will' -2.56, ' were' -3.13, ' that' -3.34
+  continuation  : are not the only ones who have been affected by the loss of the season. The players on the team are not the only ones who have
+  fluency       : 4.439  (mean 2/3-gram entropy of the generation)
+
+[S05] suite=factual_recall  split=train  id=fact_008
+  prompt        : The Eiffel Tower is located in the city of
+  correct/wrong : 'Paris' (-2.96)  vs  'Rome' (-6.74)
+  logit diff    : +3.775  -> model prefers the correct answer
+  top-5 next    : ' E' -2.32, ' Paris' -2.96, ' Amsterdam' -3.46, ' Montreal' -3.78, ' Le' -4.15
+  continuation  : Eiffel, France. The Eiffel Tower is located in the city of Eiffel, France. The Eiff
+  fluency       : 4.075  (mean 2/3-gram entropy of the generation)
+
+[S06] suite=induction  split=train  id=ind_005_b
+  prompt        : riverdesert river
+  correct/wrong : 'desert' (-9.52)  vs  'mountain' (-9.02)
+  logit diff    : -0.503  -> model prefers the INCORRECT answer
+  top-5 next    : '\n' -0.56, ',' -4.00, ';' -4.28, ' (' -4.45, ' in' -5.11
+  continuation  : The river Département des Résistances (Département des Résistances) is a river in the French
+  fluency       : 4.623  (mean 2/3-gram entropy of the generation)
+
+[S07] suite=agreement  split=train  id=agr_008_p
+  prompt        : The scientists in the lab
+  correct/wrong : 'are' (-1.75)  vs  'is' (-6.61)
+  logit diff    : +4.862  -> model prefers the correct answer
+  top-5 next    : ' are' -1.75, ' have' -1.81, ' of' -2.43, ' at' -2.49, ',' -3.31
+  continuation  : are working on a new method to measure the amount of oxygen in the blood. The scientists in the lab are working on a new method to
+  fluency       : 4.399  (mean 2/3-gram entropy of the generation)
+
+[S08] suite=factual_recall  split=train  id=fact_009
+  prompt        : The Colosseum is located in the city of
+  correct/wrong : 'Rome' (-2.75)  vs  'Athens' (-3.95)
+  logit diff    : +1.200  -> model prefers the correct answer
+  top-5 next    : ' Rome' -2.75, ' Col' -2.85, ' Florence' -2.99, ' San' -3.22, ' London' -3.90
+  continuation  : Rome, Italy. The Colosseum is located in the city of Rome, Italy. The Colosseum is located in the
+  fluency       : 3.971  (mean 2/3-gram entropy of the generation)
+
+[S09] suite=induction  split=test  id=ind_007_a
+  prompt        : MercuryVenus Mercury
+  correct/wrong : 'Venus' (-4.83)  vs  'Saturn' (-6.95)
+  logit diff    : +2.119  -> model prefers the correct answer
+  top-5 next    : '\n' -1.53, ' is' -3.72, '-' -3.83, ':' -3.91, ' Mercury' -4.18
+  continuation  : MercuryVenus Mercury is a female form of the Venus-Venus family, which is the only species of Venus that is not
+  fluency       : 4.809  (mean 2/3-gram entropy of the generation)
+
+[S10] suite=agreement  split=train  id=agr_007_p
+  prompt        : The children at the school
+  correct/wrong : 'are' (-3.27)  vs  'is' (-6.87)
+  logit diff    : +3.600  -> model prefers the correct answer
+  top-5 next    : ' were' -2.33, ' where' -2.78, ' who' -2.96, ' are' -3.27, ' in' -3.30
+  continuation  : were not allowed to attend the school. The school was closed on Monday, but the children were allowed to attend the school on Tuesday.
+  fluency       : 4.787  (mean 2/3-gram entropy of the generation)
+
+------------------------------------------------------------------------------
+PART B — generative experiment: rank-one factual edit
+------------------------------------------------------------------------------
+For each fact the pipeline localizes the storing MLP by causal tracing, fits a
+rank-one update to that layer's output matrix, and regenerates. 'before' and
+'after' differ only by that single edited weight matrix.
+
+[E01] The Eiffel Tower: Paris -> Rome   (edited MLP layer 6)
+  -- efficacy: the edited prompt
+     prompt : The Eiffel Tower is located in the city of
+     before : The Eiffel Tower is located in the city of Eiffel, France. The Eiffel Tower is located in the city of Eiffel, France. The Eiff
+     after  : The Eiffel Tower is located in the city of Eiffel, France. The Eiffel Tower is located in the city of Eiffel, France. The Eiff
+
+  -- generalization: paraphrases (unseen wording)
+     prompt : You can find the Eiffel Tower in the heart of
+     before : You can find the Eiffel Tower in the heart of Paris, France. The Eiffel Tower is a tall, narrow, and narrow-sided building with a tall, narrow, and narrow
+     after  : You can find the Eiffel Tower in the heart of Paris, France. The Eiffel Tower is a monument to the French Revolution. It was built in 1789 and was the first monument
+
+     prompt : Tourists who want to see the Eiffel Tower travel to
+     before : Tourists who want to see the Eiffel Tower travel to the World Trade Center in New York City will be able to do so at the World Trade Center in New York City. The World Trade Center
+     after  : Tourists who want to see the Eiffel Tower travel to the top of the world The Eiffel Tower is the world's tallest building, and the world's most famous. The Eiff
+
+  -- specificity: neighbourhood (must NOT change)
+     prompt : Big Ben is located in the city of
+     before : Big Ben is located in the city of New York. The city is home to the largest number of people in the world. The city is home to the largest number of
+     after  : Big Ben is located in the city of New York. The city of New York is located in the center of the country. The city is located in the middle of the
+
+     prompt : The Brandenburg Gate is located in the city of
+     before : The Brandenburg Gate is located in the city of Brandenburg, Germany. The Brandenburg Gate is located in the city of Brandenburg, Germany. The Brandenburg Gate is located
+     after  : The Brandenburg Gate is located in the city of Berlin, Germany. The Brandenburg Gate is located in the city of Berlin, Germany. The Brandenburg Gate is located in the
+
+  scores: efficacy=0.00  generalization=0.00  specificity=0.50 (top-1 unchanged on neighbours: 0.50)  fluency 4.51 -> 4.58
+
+[E02] Mount Everest: Nepal -> Canada   (edited MLP layer 1)
+  -- efficacy: the edited prompt
+     prompt : Mount Everest is located in the country of
+     before : Mount Everest is located in the country of Nepal. The mountain is located in the Himalayas, and is the highest mountain in the world. It is located in the Himalay
+     after  : Mount Everest is located in the country of Canada. The Mount Everest National Park is located in the country of Canada. The park is located in the province of Alberta.
+
+  -- generalization: paraphrases (unseen wording)
+     prompt : To climb Mount Everest you would travel to
+     before : To climb Mount Everest you would travel to the highest mountain in the world. To climb Mount Everest you would travel to the highest mountain in the world. To climb Mount
+     after  : To climb Mount Everest you would travel to the Everest International Airport. The Everest International Airport is located in the city of Everest, at the southern end of the mountain range
+
+     prompt : Mount Everest can be found in
+     before : Mount Everest can be found in the Himalayas, and is the highest mountain in the world. The mountain is located in the Himalayas, and is the highest
+     after  : Mount Everest can be found in the distance from the summit of Mount Everest. The Mount Everest mountain range is a natural area of the world, with a total area
+
+  -- specificity: neighbourhood (must NOT change)
+     prompt : Mount Fuji is located in the country of
+     before : Mount Fuji is located in the country of Japan. The mountain is located in the north of Japan. The mountain is located in the north of Japan. The mountain
+     after  : Mount Fuji is located in the country of Japan. The mountain is located in the north of Japan. The mountain is located in the north of Japan. The mountain
+
+     prompt : Kilimanjaro is located in the country of
+     before : Kilimanjaro is located in the country of the Central African Republic. Kilimanjaro is located in the country of the Central African Republic. The country is divided into
+     after  : Kilimanjaro is located in the country of the United States. Kilimanjaro is located in the United States of America. Kilimanjaro is located in
+
+  scores: efficacy=1.00  generalization=0.00  specificity=0.50 (top-1 unchanged on neighbours: 1.00)  fluency 4.41 -> 4.56
+
+[E03] The Mona Lisa: Leonardo -> Rembrandt   (edited MLP layer 4)
+  -- efficacy: the edited prompt
+     prompt : The Mona Lisa was painted by
+     before : The Mona Lisa was painted by the artist, and the Mona Lisa was painted by the artist. The Mona Lisa was painted by the artist, and the Mona
+     after  : The Mona Lisa was painted by Rembrandt in the 1930s. The Mona Lisa is a painting by Rembrandt that depicts the Virgin Mary in the foreground.
+
+  -- generalization: paraphrases (unseen wording)
+     prompt : The artist who created the Mona Lisa was
+     before : The artist who created the Mona Lisa was a woman who was born in the United States. The Mona Lisa was a woman who was born in the United States. The
+     after  : The artist who created the Mona Lisa was a woman who lived in a small town in the south of England. The Mona Lisa was a woman who lived in a small town in
+
+     prompt : The Mona Lisa is a famous work by
+     before : The Mona Lisa is a famous work by the Italian Renaissance artist, and it is one of the most famous works of the Renaissance. The Mona Lisa is a famous work by the
+     after  : The Mona Lisa is a famous work by British artist Nicola Sturgeon. The Mona Lisa is a famous work by British artist Nicola Sturgeon. The Mona
+
+  -- specificity: neighbourhood (must NOT change)
+     prompt : The Starry Night was painted by
+     before : The Starry Night was painted by the same artist who painted the original version of the movie. The Starry Night was painted by the same artist who painted the original version of
+     after  : The Starry Night was painted by the same man who had painted the first Starry Night. The Starry Night was painted by the same man who had painted the first Star
+
+     prompt : Guernica was painted by
+     before : Guernica was painted by the artist, and the color is a mixture of the two. The color is a mixture of the two. The color is a
+     after  : Guernica was painted by the artist, and the color is a mixture of the two. Guernica was painted by the artist, and the color is a mixture
+
+  scores: efficacy=1.00  generalization=0.00  specificity=0.00 (top-1 unchanged on neighbours: 1.00)  fluency 4.35 -> 4.43
+
+------------------------------------------------------------------------------
+END
+------------------------------------------------------------------------------

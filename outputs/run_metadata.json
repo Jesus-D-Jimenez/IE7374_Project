@@ -1,0 +1,68 @@
+{
+  "run": {
+    "utc": "2026-07-25 11:53:30",
+    "elapsed_seconds": 59.6,
+    "command": "python.exe src/model_runner.py"
+  },
+  "model": {
+    "name": "pythia-160m",
+    "device": "cpu",
+    "n_layers": 12,
+    "n_heads": 12,
+    "d_model": 768,
+    "d_mlp": 3072,
+    "n_params": 162334848
+  },
+  "config": {
+    "seed": 0,
+    "n_samples": 10,
+    "top_k": 5,
+    "gen_max_new_tokens": 30,
+    "gen_do_sample": false,
+    "edit_lr": 0.5,
+    "edit_steps": 25,
+    "edit_kl_weight": 0.0625,
+    "edit_layer": "auto",
+    "noise_scale": 3.0
+  },
+  "dataset": {
+    "n_prompts_available": 48,
+    "by_suite": {
+      "agreement": 20,
+      "factual_recall": 12,
+      "induction": 16
+    },
+    "n_edit_targets_available": 3
+  },
+  "results": {
+    "n_behavioral_samples": 10,
+    "n_behavioral_ok": 10,
+    "next_token_accuracy": 0.9,
+    "mean_logit_diff": 3.138,
+    "n_edits": 3,
+    "edit_scores_mean": {
+      "efficacy": 0.667,
+      "generalization": 0.0,
+      "specificity": 0.333,
+      "specificity_pred_preserved": 0.833,
+      "fluency_before": 4.424,
+      "fluency_after": 4.524
+    }
+  },
+  "versions": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.13.0",
+    "transformers": "4.57.6",
+    "transformer_lens": "2.18.0",
+    "pandas": "3.0.5"
+  },
+  "files": {
+    "behavioral_csv": "outputs/samples_behavioral.csv",
+    "edit_csv": "outputs/samples_edit.csv",
+    "edit_summary_csv": "outputs/edit_summary.csv",
+    "logit_diff_by_suite": "outputs/images/logit_diff_by_suite.png",
+    "edit_quality": "outputs/images/edit_quality.png",
+    "samples_txt": "outputs/samples.txt"
+  }
+}

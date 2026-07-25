@@ -29,10 +29,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install numpy pandas pyyaml pytest
 
-      - name: Verify datasets are reproducible
+      - name: Verify raw suites are reproducible
         run: |
           python data/build_suites.py
-          git diff --exit-code -- data/
+          git diff --exit-code -- data/prompts data/edit_targets.json
+
+      - name: Verify the processed dataset is up to date
+        run: |
+          python src/data_loader.py --check
+          git diff --exit-code -- data/processed
 
       - name: Run fast test suite
         run: pytest -q

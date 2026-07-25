@@ -1,0 +1,62 @@
+[
+  {
+    "subject": "The Eiffel Tower",
+    "prompt": "The Eiffel Tower is located in the city of",
+    "true": "Paris",
+    "new": "Rome",
+    "paraphrases": [
+      "You can find the Eiffel Tower in the heart of",
+      "Tourists who want to see the Eiffel Tower travel to"
+    ],
+    "neighborhood": [
+      [
+        "Big Ben is located in the city of",
+        "London"
+      ],
+      [
+        "The Brandenburg Gate is located in the city of",
+        "Berlin"
+      ]
+    ]
+  },
+  {
+    "subject": "Mount Everest",
+    "prompt": "Mount Everest is located in the country of",
+    "true": "Nepal",
+    "new": "Canada",
+    "paraphrases": [
+      "To climb Mount Everest you would travel to",
+      "Mount Everest can be found in"
+    ],
+    "neighborhood": [
+      [
+        "Mount Fuji is located in the country of",
+        "Japan"
+      ],
+      [
+        "Kilimanjaro is located in the country of",
+        "Tanzania"
+      ]
+    ]
+  },
+  {
+    "subject": "The Mona Lisa",
+    "prompt": "The Mona Lisa was painted by",
+    "true": "Leonardo",
+    "new": "Rembrandt",
+    "paraphrases": [
+      "The artist who created the Mona Lisa was",
+      "The Mona Lisa is a famous work by"
+    ],
+    "neighborhood": [
+      [
+        "The Starry Night was painted by",
+        "Vincent"
+      ],
+      [
+        "Guernica was painted by",
+        "Pablo"
+      ]
+    ]
+  }
+]

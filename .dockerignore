@@ -1,0 +1,19 @@
+# Keep the build context small and the image reproducible.
+.git/
+.github/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Regenerated inside the container
+results/
+outputs/images/
+.cache/
+hf_cache/
+
+# Large source documents that the pipeline never reads
+docs/*.docx

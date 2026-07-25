@@ -1,0 +1,36 @@
+# Single source of truth for every hyperparameter in the pipeline.
+# Loaded by models/config.py into a typed ProjectConfig dataclass.
+# Any field can be overridden on the command line, e.g.:
+#     python src/model_runner.py --model pythia-410m --n-samples 12
+
+# --- Model -----------------------------------------------------------------
+model_name: pythia-160m      # main model; gpt2 is the replication control
+device: auto                 # auto | cpu | cuda
+seed: 0                      # seeds sample selection, tracing noise, and decoding
+
+# --- Paths (relative to the repository root) -------------------------------
+data_dir: data                 # raw prompt suites + edit targets
+processed_dir: data/processed  # cleaned/split dataset written by src/data_loader.py
+outputs_dir: outputs           # generated samples, committed for review (Phase 2)
+results_dir: results           # heavier experiment artifacts (git-ignored)
+
+# --- Inference batch (src/model_runner.py) ---------------------------------
+n_samples: 10                # behavioral prompts to run inference on per run
+samples_per_suite: 4         # cap per behavior so the batch stays balanced
+top_k: 5                     # top-k next tokens recorded for each prompt
+
+# --- Causal tracing (Experiment 3) -----------------------------------------
+noise_scale: 3.0             # subject-corruption noise, in units of embedding std (Meng et al.)
+
+# --- ROME-style edit (Experiment 4) ----------------------------------------
+edit_lr: 0.5                 # Adam LR for the v* optimization
+edit_steps: 25               # optimization steps
+edit_kl_weight: 0.0625       # L2 penalty on the injected delta (keeps the edit small)
+edit_layer: auto             # auto = pick the causal-trace peak at the subject's last token
+
+# --- Generation / evaluation -----------------------------------------------
+gen_max_new_tokens: 30
+gen_do_sample: false         # greedy decoding for reproducible before/after comparisons
+
+# --- Dataset preprocessing (src/data_loader.py) ----------------------------
+split_ratios: [0.7, 0.15, 0.15]   # train / val / test; contrast pairs never straddle a split

@@ -4,6 +4,10 @@ Notebooks that demonstrate each stage of the project end to end. They import the
 code in [`../models`](../models) and [`../data`](../data); the same logic is available as
 headless scripts in [`../scripts`](../scripts).
 
+For the end-to-end pipeline itself — processed data → model → saved samples — see
+[`../notebooks/demo_pipeline.ipynb`](../notebooks/demo_pipeline.ipynb) or run
+`python src/model_runner.py`.
+
 | Notebook | Maps to | What it shows |
 |---|---|---|
 | [`01_baseline.ipynb`](01_baseline.ipynb) | Experiments 1–3 | Baseline logit differences, the logit lens, and causal tracing to localize a fact. |

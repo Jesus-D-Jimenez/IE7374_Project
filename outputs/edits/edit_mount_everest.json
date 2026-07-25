@@ -1,0 +1,18 @@
+{
+  "subject": "Mount Everest",
+  "prompt": "Mount Everest is located in the country of",
+  "true": "Nepal",
+  "new": "Canada",
+  "model_name": "pythia-160m",
+  "layer": 1,
+  "subject_last_token_position": 3,
+  "steps": 25,
+  "lr": 0.5,
+  "l2_penalty": 0.0625,
+  "loss_first": 3.231,
+  "loss_final": 2.2291,
+  "delta_norm": 5.9159,
+  "v_orig_norm": 8.5388,
+  "seconds": 3.8,
+  "tensor_file": "outputs/edits/edit_mount_everest.pt"
+}
