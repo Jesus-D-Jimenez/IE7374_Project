@@ -1,7 +1,9 @@
-# Core interpretability + editing stack
+# Core interpretability + editing stack.
+# transformer_lens 2.x is pinned deliberately: its 3.x line requires transformers >= 5,
+# whose GPT-NeoX rename (embed_out -> lm_head) breaks the Pythia weight conversion.
 torch>=2.1
-transformers>=4.40
-transformer_lens>=2.0
+transformers>=4.40,<5
+transformer_lens>=2.0,<3
 
 # Data, analysis, and plotting
 numpy>=1.24

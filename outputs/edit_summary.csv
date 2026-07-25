@@ -1,0 +1,4 @@
+edit_id,subject,true,new,efficacy,generalization,specificity,specificity_pred_preserved,fluency_before,fluency_after,layer,status
+E01,The Eiffel Tower,Paris,Rome,0.0,0.0,0.5,0.5,4.514,4.578,6,ok
+E02,Mount Everest,Nepal,Canada,1.0,0.0,0.5,1.0,4.405,4.561,1,ok
+E03,The Mona Lisa,Leonardo,Rembrandt,1.0,0.0,0.0,1.0,4.352,4.432,4,ok

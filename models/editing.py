@@ -12,7 +12,7 @@ identity keeps the method self-contained; the generalization/specificity metrics
 models/metrics.py reveal the quality trade-off that simplification makes.
 """
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import torch
 
@@ -27,6 +27,7 @@ class EditResult:
     v_star: torch.Tensor
     v_orig: torch.Tensor
     k_vec: torch.Tensor
+    losses: list[float] = field(default_factory=list)   # v* optimization loss per step
 
 
 def optimize_v_star(model, prompt: str, subject: str, new_object: str,
@@ -48,6 +49,7 @@ def optimize_v_star(model, prompt: str, subject: str, new_object: str,
         value[0, pos] = value[0, pos] + delta
         return value
 
+    losses = []
     for step in range(cfg.edit_steps):
         opt.zero_grad()
         logits = model.run_with_hooks(
@@ -56,9 +58,11 @@ def optimize_v_star(model, prompt: str, subject: str, new_object: str,
         loss = -logp[tgt_tok] + cfg.edit_kl_weight * delta.norm() ** 2
         loss.backward()
         opt.step()
+        losses.append(loss.item())          # recorded so src/train.py can plot the fit
 
     return EditResult(layer=layer, position=pos,
-                      v_star=(v_orig + delta.detach()), v_orig=v_orig, k_vec=k_vec)
+                      v_star=(v_orig + delta.detach()), v_orig=v_orig, k_vec=k_vec,
+                      losses=losses)
 
 
 # Registry of original weights so edits can be undone.

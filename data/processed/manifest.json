@@ -1,0 +1,72 @@
+{
+  "generated_by": "src/data_loader.py",
+  "description": "Behavioral minimal-pair prompt suites and ROME edit targets, normalized and split deterministically. No timestamps are recorded so the build is byte-for-byte reproducible.",
+  "config": {
+    "seed": 0,
+    "split_ratios": [
+      0.7,
+      0.15,
+      0.15
+    ]
+  },
+  "sources": [
+    {
+      "path": "data/prompts/subject_verb_agreement.jsonl",
+      "sha256": "6107c3cb6391cc63ff1e12b8953c4410e9c0eca76fed6ff0587574a6f49b998e",
+      "records": 20
+    },
+    {
+      "path": "data/prompts/factual_recall.jsonl",
+      "sha256": "4f9e20d492c96e052e75f8aa374ba875622c591dcaff07ec895196714f5f0cb6",
+      "records": 12
+    },
+    {
+      "path": "data/prompts/induction.jsonl",
+      "sha256": "07b8cfb72f9df02abd4ebef2e4438a5dab527b3f9aafcac49e215d1f68dd680e",
+      "records": 16
+    },
+    {
+      "path": "data/edit_targets.json",
+      "sha256": "bfb6f41406f94df1c97ee0a5beaa2991321c0c5a7ffb33b05250b2a929fa4e01",
+      "records": 3
+    }
+  ],
+  "n_prompts": 48,
+  "n_edit_targets": 3,
+  "by_suite": {
+    "agreement": 20,
+    "factual_recall": 12,
+    "induction": 16
+  },
+  "by_split": {
+    "val": 5,
+    "train": 32,
+    "test": 11
+  },
+  "files": {
+    "prompts": "data/processed/prompts.jsonl",
+    "edit_targets": "data/processed/edit_targets.json"
+  },
+  "schema": {
+    "prompts": [
+      "id",
+      "suite",
+      "type",
+      "prompt",
+      "correct",
+      "incorrect",
+      "contrast_id",
+      "split",
+      "n_chars",
+      "n_tokens_est"
+    ],
+    "edit_targets": [
+      "subject",
+      "prompt",
+      "true",
+      "new",
+      "paraphrases",
+      "neighborhood"
+    ]
+  }
+}

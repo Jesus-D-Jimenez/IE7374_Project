@@ -1,0 +1,125 @@
+edit_id,subject,kind,prompt,pred,says_new,says_true,keeps_answer,fluency,generation,phase,layer,true,new
+E01,The Eiffel Tower,efficacy,The Eiffel Tower is located in the city of,E,False,False,,4.075,"The Eiffel Tower is located in the city of Eiffel, France.
+
+The Eiffel Tower is located in the city of Eiffel, France.
+
+The Eiff",before,6,Paris,Rome
+E01,The Eiffel Tower,generalization,You can find the Eiffel Tower in the heart of,Paris,False,True,,4.945,"You can find the Eiffel Tower in the heart of Paris, France.
+
+The Eiffel Tower is a tall, narrow, and narrow-sided building with a tall, narrow, and narrow",before,6,Paris,Rome
+E01,The Eiffel Tower,generalization,Tourists who want to see the Eiffel Tower travel to,the,False,False,,4.963,"Tourists who want to see the Eiffel Tower travel to the World Trade Center in New York City will be able to do so at the World Trade Center in New York City.
+
+The World Trade Center",before,6,Paris,Rome
+E01,The Eiffel Tower,specificity,Big Ben is located in the city of,New,,,False,4.588,"Big Ben is located in the city of New York.
+
+The city is home to the largest number of people in the world.
+
+The city is home to the largest number of",before,6,Paris,Rome
+E01,The Eiffel Tower,specificity,The Brandenburg Gate is located in the city of,Brand,,,False,4.0,"The Brandenburg Gate is located in the city of Brandenburg, Germany.
+
+The Brandenburg Gate is located in the city of Brandenburg, Germany.
+
+The Brandenburg Gate is located",before,6,Paris,Rome
+E01,The Eiffel Tower,efficacy,The Eiffel Tower is located in the city of,E,False,False,,4.075,"The Eiffel Tower is located in the city of Eiffel, France.
+
+The Eiffel Tower is located in the city of Eiffel, France.
+
+The Eiff",after,6,Paris,Rome
+E01,The Eiffel Tower,generalization,You can find the Eiffel Tower in the heart of,Paris,False,True,,5.217,"You can find the Eiffel Tower in the heart of Paris, France.
+
+The Eiffel Tower is a monument to the French Revolution. It was built in 1789 and was the first monument",after,6,Paris,Rome
+E01,The Eiffel Tower,generalization,Tourists who want to see the Eiffel Tower travel to,the,False,False,,5.117,"Tourists who want to see the Eiffel Tower travel to the top of the world
+
+The Eiffel Tower is the world's tallest building, and the world's most famous. The Eiff",after,6,Paris,Rome
+E01,The Eiffel Tower,specificity,Big Ben is located in the city of,New,,,False,4.51,"Big Ben is located in the city of New York.
+
+The city of New York is located in the center of the country.
+
+The city is located in the middle of the",after,6,Paris,Rome
+E01,The Eiffel Tower,specificity,The Brandenburg Gate is located in the city of,Berlin,,,True,3.971,"The Brandenburg Gate is located in the city of Berlin, Germany.
+
+The Brandenburg Gate is located in the city of Berlin, Germany.
+
+The Brandenburg Gate is located in the",after,6,Paris,Rome
+E02,Mount Everest,efficacy,Mount Everest is located in the country of,Nepal,False,True,,4.763,"Mount Everest is located in the country of Nepal.
+
+The mountain is located in the Himalayas, and is the highest mountain in the world. It is located in the Himalay",before,1,Nepal,Canada
+E02,Mount Everest,generalization,To climb Mount Everest you would travel to,the,False,False,,4.159,"To climb Mount Everest you would travel to the highest mountain in the world.
+
+To climb Mount Everest you would travel to the highest mountain in the world.
+
+To climb Mount",before,1,Nepal,Canada
+E02,Mount Everest,generalization,Mount Everest can be found in,the,False,False,,4.633,"Mount Everest can be found in the Himalayas, and is the highest mountain in the world.
+
+The mountain is located in the Himalayas, and is the highest",before,1,Nepal,Canada
+E02,Mount Everest,specificity,Mount Fuji is located in the country of,Japan,,,True,4.002,"Mount Fuji is located in the country of Japan.
+
+The mountain is located in the north of Japan.
+
+The mountain is located in the north of Japan.
+
+The mountain",before,1,Nepal,Canada
+E02,Mount Everest,specificity,Kilimanjaro is located in the country of,the,,,False,4.468,"Kilimanjaro is located in the country of the Central African Republic.
+
+Kilimanjaro is located in the country of the Central African Republic.
+
+The country is divided into",before,1,Nepal,Canada
+E02,Mount Everest,efficacy,Mount Everest is located in the country of,Canada,True,False,,4.513,"Mount Everest is located in the country of Canada.
+
+The Mount Everest National Park is located in the country of Canada.
+
+The park is located in the province of Alberta.",after,1,Nepal,Canada
+E02,Mount Everest,generalization,To climb Mount Everest you would travel to,the,False,False,,5.017,"To climb Mount Everest you would travel to the Everest International Airport.
+
+The Everest International Airport is located in the city of Everest, at the southern end of the mountain range",after,1,Nepal,Canada
+E02,Mount Everest,generalization,Mount Everest can be found in,the,False,False,,5.027,"Mount Everest can be found in the distance from the summit of Mount Everest.
+
+The Mount Everest mountain range is a natural area of the world, with a total area",after,1,Nepal,Canada
+E02,Mount Everest,specificity,Mount Fuji is located in the country of,Japan,,,True,4.002,"Mount Fuji is located in the country of Japan.
+
+The mountain is located in the north of Japan.
+
+The mountain is located in the north of Japan.
+
+The mountain",after,1,Nepal,Canada
+E02,Mount Everest,specificity,Kilimanjaro is located in the country of,the,,,False,4.244,"Kilimanjaro is located in the country of the United States.
+
+Kilimanjaro is located in the United States of America.
+
+Kilimanjaro is located in",after,1,Nepal,Canada
+E03,The Mona Lisa,efficacy,The Mona Lisa was painted by,the,False,False,,3.924,"The Mona Lisa was painted by the artist, and the Mona Lisa was painted by the artist.
+
+The Mona Lisa was painted by the artist, and the Mona",before,4,Leonardo,Rembrandt
+E03,The Mona Lisa,generalization,The artist who created the Mona Lisa was,a,False,False,,4.402,"The artist who created the Mona Lisa was a woman who was born in the United States.
+
+The Mona Lisa was a woman who was born in the United States.
+
+The",before,4,Leonardo,Rembrandt
+E03,The Mona Lisa,generalization,The Mona Lisa is a famous work by,the,False,False,,4.749,"The Mona Lisa is a famous work by the Italian Renaissance artist, and it is one of the most famous works of the Renaissance.
+
+The Mona Lisa is a famous work by the",before,4,Leonardo,Rembrandt
+E03,The Mona Lisa,specificity,The Starry Night was painted by,the,,,False,4.333,"The Starry Night was painted by the same artist who painted the original version of the movie.
+
+The Starry Night was painted by the same artist who painted the original version of",before,4,Leonardo,Rembrandt
+E03,The Mona Lisa,specificity,Guernica was painted by,the,,,False,4.351,"Guernica was painted by the artist, and the color is a mixture of the two.
+
+The color is a mixture of the two.
+
+The color is a",before,4,Leonardo,Rembrandt
+E03,The Mona Lisa,efficacy,The Mona Lisa was painted by,Rem,True,False,,4.841,"The Mona Lisa was painted by Rembrandt in the 1930s.
+
+The Mona Lisa is a painting by Rembrandt that depicts the Virgin Mary in the foreground.",after,4,Leonardo,Rembrandt
+E03,The Mona Lisa,generalization,The artist who created the Mona Lisa was,a,False,False,,4.616,"The artist who created the Mona Lisa was a woman who lived in a small town in the south of England.
+
+The Mona Lisa was a woman who lived in a small town in",after,4,Leonardo,Rembrandt
+E03,The Mona Lisa,generalization,The Mona Lisa is a famous work by,British,False,False,,4.159,"The Mona Lisa is a famous work by British artist Nicola Sturgeon.
+
+The Mona Lisa is a famous work by British artist Nicola Sturgeon.
+
+The Mona",after,4,Leonardo,Rembrandt
+E03,The Mona Lisa,specificity,The Starry Night was painted by,the,,,False,4.217,"The Starry Night was painted by the same man who had painted the first Starry Night.
+
+The Starry Night was painted by the same man who had painted the first Star",after,4,Leonardo,Rembrandt
+E03,The Mona Lisa,specificity,Guernica was painted by,the,,,False,4.326,"Guernica was painted by the artist, and the color is a mixture of the two.
+
+Guernica was painted by the artist, and the color is a mixture",after,4,Leonardo,Rembrandt

@@ -95,14 +95,34 @@ def evaluate_edit(model, target: dict, config: ProjectConfig | None = None,
 
 
 def summarize_scores(df: pd.DataFrame) -> dict:
+    """Aggregate one target's before/after table into the four ROME-style scores.
+
+    efficacy       - does the edited prompt now state the new object?
+    generalization - do paraphrases state it too?
+    specificity    - do unrelated ("neighbourhood") prompts still state their own answer?
+    specificity_pred_preserved - stricter and fairer companion to `specificity`: the share
+                     of neighbourhood prompts whose top-1 next token is unchanged by the
+                     edit. Plain `specificity` scores 0 whenever the base model never knew
+                     the neighbourhood fact, which confuses "the edit broke it" with "the
+                     model never had it"; comparing against the pre-edit prediction
+                     measures only the damage the edit itself caused.
+    """
     after = df[df.phase == "after"]
     eff = after[after.kind == "efficacy"]["says_new"].mean()
     gen = after[after.kind == "generalization"]["says_new"].mean()
     spec = after[after.kind == "specificity"]["keeps_answer"].mean()
+
+    neighborhood = df[df.kind == "specificity"]
+    before_pred = neighborhood[neighborhood.phase == "before"].set_index("prompt")["pred"]
+    after_pred = neighborhood[neighborhood.phase == "after"].set_index("prompt")["pred"]
+    shared = before_pred.index.intersection(after_pred.index)
+    preserved = float((before_pred[shared] == after_pred[shared]).mean()) if len(shared) else float("nan")
+
     return dict(
         efficacy=round(float(eff), 3),
         generalization=round(float(gen), 3),
         specificity=round(float(spec), 3),
+        specificity_pred_preserved=round(preserved, 3),
         fluency_before=round(float(df[df.phase == "before"]["fluency"].mean()), 3),
         fluency_after=round(float(after["fluency"].mean()), 3),
     )

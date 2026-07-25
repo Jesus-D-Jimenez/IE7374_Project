@@ -42,7 +42,7 @@ a trainable vector `δ` to `hook_mlp_out` and minimize
 loss = −log p(new_object | prompt)  +  λ · ||δ||²
 ```
 
-with Adam (`edit_lr`, `edit_steps`, `edit_kl_weight` in [`../config/default.yaml`](../config/default.yaml)).
+with Adam (`edit_lr`, `edit_steps`, `edit_kl_weight` in [`../configs/model_config.yaml`](../configs/model_config.yaml)).
 Then `v* = v_orig + δ`.
 
 **(b) Solve the rank-one weight update.** With key `k = mlp.hook_post[L, pos]`, we set
@@ -77,12 +77,33 @@ Implemented in [`../models/metrics.py`](../models/metrics.py).
 - **Efficacy** — the edited prompt now generates the new object.
 - **Generalization** — paraphrase prompts also generate the new object.
 - **Specificity** — neighborhood (unrelated) facts keep their original answers.
+- **Specificity (top-1 preserved)** — share of neighborhood prompts whose top-1 next token is
+  unchanged by the edit. Plain specificity scores 0 whenever the base model never knew the
+  neighborhood fact, conflating "the edit broke it" with "the model never had it"; comparing
+  against the *pre-edit* prediction isolates the damage the edit itself caused.
 - **Fluency** — bi-/tri-gram entropy of the generation stays high (no degeneration).
 
-## 5. Reproducibility
+## 5. Pipeline
 
-- Single YAML config with CLI overrides; fixed seeds; greedy decoding for stable before/after
-  comparisons.
-- Deterministic dataset generation (`data/build_suites.py`).
-- Headless scripts (`scripts/`) mirror the notebooks (`experiments/`) so results can be regenerated
-  without a GUI.
+The stages are wired together in [`../src/`](../src) so the whole system runs with one command:
+
+| Stage | Module | Input → output |
+|---|---|---|
+| Dataset | [`../src/data_loader.py`](../src/data_loader.py) | `data/prompts/*.jsonl` → `data/processed/` (validated, split, manifested) |
+| Inference | [`../src/model_runner.py`](../src/model_runner.py) | `data/processed/` → `outputs/` (samples, tables, figures, run record) |
+| Edit fitting | [`../src/train.py`](../src/train.py) | one target → `outputs/edits/` (fitted `v*`, loss curve) |
+
+```bash
+python src/model_runner.py     # the whole pipeline, ~1 minute on CPU
+```
+
+## 6. Reproducibility
+
+- Single YAML config ([`../configs/model_config.yaml`](../configs/model_config.yaml)) with CLI
+  overrides; fixed seeds; greedy decoding for stable before/after comparisons.
+- Deterministic dataset generation at both layers (`data/build_suites.py`, `src/data_loader.py`),
+  verified in CI.
+- Package versions of every committed run are recorded in `outputs/run_metadata.json`, and the
+  `Dockerfile` pins the environment end to end.
+- Headless scripts (`scripts/`) mirror the notebooks (`experiments/`, `notebooks/`) so results can
+  be regenerated without a GUI.

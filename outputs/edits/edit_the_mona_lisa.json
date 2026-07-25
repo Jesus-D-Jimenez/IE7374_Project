@@ -1,0 +1,18 @@
+{
+  "subject": "The Mona Lisa",
+  "prompt": "The Mona Lisa was painted by",
+  "true": "Leonardo",
+  "new": "Rembrandt",
+  "model_name": "pythia-160m",
+  "layer": 4,
+  "subject_last_token_position": 4,
+  "steps": 25,
+  "lr": 0.5,
+  "l2_penalty": 0.0625,
+  "loss_first": 6.9057,
+  "loss_final": 4.2904,
+  "delta_norm": 7.7667,
+  "v_orig_norm": 8.0111,
+  "seconds": 3.7,
+  "tensor_file": "outputs/edits/edit_the_mona_lisa.pt"
+}
