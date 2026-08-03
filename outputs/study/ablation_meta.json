@@ -1,0 +1,6 @@
+{
+  "model": "pythia-160m",
+  "per_suite": 4,
+  "n_layers": 12,
+  "n_heads": 12
+}

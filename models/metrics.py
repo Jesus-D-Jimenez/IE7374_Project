@@ -30,8 +30,12 @@ def selectivity_score(target_drop: float, control_drop: float) -> float:
 # --------------------------------------------------------------------------- #
 # Generation metrics
 # --------------------------------------------------------------------------- #
-def _snapshot(model, target: dict, config: ProjectConfig) -> pd.DataFrame:
-    """Generate + score every evaluation prompt for one target at the current weights."""
+def snapshot_generations(model, target: dict, config: ProjectConfig) -> pd.DataFrame:
+    """Generate + score every evaluation prompt for one target at the current weights.
+
+    Public because the layer sweep (`scripts/run_layer_sweep.py`) reuses one pre-edit
+    snapshot across every candidate layer instead of regenerating it once per layer.
+    """
     true, new = target["true"], target["new"]
     rows = []
 
@@ -75,15 +79,15 @@ def evaluate_edit(model, target: dict, config: ProjectConfig | None = None,
         else:
             recovery, subj_last, _ = causal_trace(model, target["prompt"],
                                                   target["subject"], target["true"], cfg)
-            layer = best_edit_layer(recovery, subj_last)
+            layer = best_edit_layer(recovery, subj_last, window=cfg.edit_layer_window)
 
     restore_weights(model)
-    before = _snapshot(model, target, cfg)
+    before = snapshot_generations(model, target, cfg)
     before["phase"] = "before"
 
     edit = optimize_v_star(model, target["prompt"], target["subject"], target["new"], layer, cfg)
     apply_rank_one_edit(model, edit)
-    after = _snapshot(model, target, cfg)
+    after = snapshot_generations(model, target, cfg)
     after["phase"] = "after"
     restore_weights(model)
 

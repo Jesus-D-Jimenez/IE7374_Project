@@ -1,0 +1,16 @@
+suite,component,type,layer,head,mean_drop
+agreement,L0.MLP,mlp,0,,4.9638
+induction,L0.MLP,mlp,0,,3.5868
+factual_recall,L0.MLP,mlp,0,,2.6891
+agreement,L6.H4,head,6,4.0,2.2934
+induction,L2.MLP,mlp,2,,2.1151
+agreement,L10.MLP,mlp,10,,2.0545
+factual_recall,L0.H7,head,0,7.0,1.886
+factual_recall,L3.MLP,mlp,3,,1.6869
+induction,L7.MLP,mlp,7,,1.5223
+induction,L6.MLP,mlp,6,,1.4412
+factual_recall,L6.MLP,mlp,6,,1.3862
+induction,L10.MLP,mlp,10,,1.3524
+agreement,L3.MLP,mlp,3,,1.3148
+agreement,L0.H4,head,0,4.0,1.2627
+factual_recall,L7.MLP,mlp,7,,1.1808

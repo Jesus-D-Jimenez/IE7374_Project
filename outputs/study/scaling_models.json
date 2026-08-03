@@ -1,0 +1,23 @@
+[
+  {
+    "model": "gpt2",
+    "n_params": 163049041,
+    "n_layers": 12,
+    "n_heads": 12,
+    "d_model": 768
+  },
+  {
+    "model": "pythia-160m",
+    "n_params": 162334848,
+    "n_layers": 12,
+    "n_heads": 12,
+    "d_model": 768
+  },
+  {
+    "model": "pythia-410m",
+    "n_params": 405283968,
+    "n_layers": 24,
+    "n_heads": 16,
+    "d_model": 1024
+  }
+]

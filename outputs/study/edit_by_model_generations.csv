@@ -1,0 +1,247 @@
+model,subject,kind,prompt,pred,says_new,says_true,keeps_answer,fluency,generation,phase,layer
+gpt2,The Eiffel Tower,efficacy,The Eiffel Tower is located in the city of,London,False,False,,4.545,"The Eiffel Tower is located in the city of London, and is the tallest building in the world. It is located in the heart of London, and is the tallest building in the world. It",before,7
+gpt2,The Eiffel Tower,generalization,You can find the Eiffel Tower in the heart of,the,False,True,,5.102,"You can find the Eiffel Tower in the heart of the city of Paris. It is a beautiful place to visit, and it is also a place to visit the famous Eiffel Tower.
+
+",before,7
+gpt2,The Eiffel Tower,generalization,Tourists who want to see the Eiffel Tower travel to,the,False,False,,5.255,"Tourists who want to see the Eiffel Tower travel to the capital will have to pay a fee of €1,000.
+
+The Eiffel Tower, which is the tallest building in the world",before,7
+gpt2,The Eiffel Tower,specificity,Big Ben is located in the city of,New,,,False,4.906,"Big Ben is located in the city of New York City, and is a popular destination for tourists. It is also home to the largest aquarium in the world, the largest aquarium in the world",before,7
+gpt2,The Eiffel Tower,specificity,The Brandenburg Gate is located in the city of,Berlin,,,True,4.829,"The Brandenburg Gate is located in the city of Berlin, Germany. The Brandenburg Gate is a major tourist attraction and is one of the most important landmarks in the world. The Brandenburg Gate is",before,7
+gpt2,The Eiffel Tower,efficacy,The Eiffel Tower is located in the city of,London,False,False,,4.545,"The Eiffel Tower is located in the city of London, and is the tallest building in the world. It is located in the heart of London, and is the tallest building in the world. It",after,7
+gpt2,The Eiffel Tower,generalization,You can find the Eiffel Tower in the heart of,the,False,True,,5.102,"You can find the Eiffel Tower in the heart of the city of Paris. It is a beautiful place to visit, and it is also a place to visit the famous Eiffel Tower.
+
+",after,7
+gpt2,The Eiffel Tower,generalization,Tourists who want to see the Eiffel Tower travel to,the,False,False,,5.255,"Tourists who want to see the Eiffel Tower travel to the capital will have to pay a fee of £1,000 to get there.
+
+The Eiffel Tower is the tallest building in the",after,7
+gpt2,The Eiffel Tower,specificity,Big Ben is located in the city of,New,,,False,4.906,"Big Ben is located in the city of New York City, and is a popular destination for tourists. It is also home to the largest aquarium in the world, the largest aquarium in the world",after,7
+gpt2,The Eiffel Tower,specificity,The Brandenburg Gate is located in the city of,Berlin,,,True,4.829,"The Brandenburg Gate is located in the city of Berlin, Germany. The Brandenburg Gate is a major tourist attraction and is one of the most important landmarks in the world. The Brandenburg Gate is",after,7
+gpt2,Mount Everest,efficacy,Mount Everest is located in the country of,Nepal,False,True,,5.044,"Mount Everest is located in the country of Nepal, and is the highest mountain in the world. It is the only place in the world where the Himalayan glaciers are melting.
+
+The",before,0
+gpt2,Mount Everest,generalization,To climb Mount Everest you would travel to,the,False,False,,4.711,"To climb Mount Everest you would travel to the top of the mountain, then descend to the top of the mountain. This is the most difficult part of the climb. The top of the mountain",before,0
+gpt2,Mount Everest,generalization,Mount Everest can be found in,the,False,False,,5.108,"Mount Everest can be found in the Himalayas, but it's not the only place to find it. The Himalayan mountains are also known for their abundance of glaciers, which",before,0
+gpt2,Mount Everest,specificity,Mount Fuji is located in the country of,Japan,,,True,4.716,"Mount Fuji is located in the country of Japan, and is the largest mountain in the world. It is located in the mountains of the northern part of the country, and is the largest mountain",before,0
+gpt2,Mount Everest,specificity,Kilimanjaro is located in the country of,Java,,,False,4.595,"Kilimanjaro is located in the country of Java, and is the largest city in Java. It is located in the southern part of Java, and is the largest city in Java. It is",before,0
+gpt2,Mount Everest,efficacy,Mount Everest is located in the country of,Nepal,False,True,,4.88,"Mount Everest is located in the country of Nepal, and is the highest mountain in the world. It is the only mountain in the world that is not a mountain. It is also the only",after,0
+gpt2,Mount Everest,generalization,To climb Mount Everest you would travel to,the,False,False,,4.711,"To climb Mount Everest you would travel to the top of the mountain, then descend to the top of the mountain. This is the most difficult part of the climb. The top of the mountain",after,0
+gpt2,Mount Everest,generalization,Mount Everest can be found in,the,False,False,,4.993,"Mount Everest can be found in the mountains of the Himalayas, but it's not the only place to find it. The Himalayas are home to many of the world",after,0
+gpt2,Mount Everest,specificity,Mount Fuji is located in the country of,Japan,,,True,4.862,"Mount Fuji is located in the country of Japan, and is located in the heart of the Fuji Mountains. It is a popular destination for mountain climbers, mountain bikers, mountain bikers,",after,0
+gpt2,Mount Everest,specificity,Kilimanjaro is located in the country of,Java,,,False,4.595,"Kilimanjaro is located in the country of Java, and is the largest city in Java. It is located in the southern part of Java, and is the largest city in Java. It is",after,0
+gpt2,The Mona Lisa,efficacy,The Mona Lisa was painted by,the,False,False,,4.499,"The Mona Lisa was painted by the artist, who has been working on the Mona Lisa since the 1970s.
+
+The Mona Lisa was painted by the artist, who",before,3
+gpt2,The Mona Lisa,generalization,The artist who created the Mona Lisa was,a,False,False,,5.096,"The artist who created the Mona Lisa was a member of the British Royal Family.
+
+The Mona Lisa was created by artist and designer John D. D'Arcy in 1859",before,3
+gpt2,The Mona Lisa,generalization,The Mona Lisa is a famous work by,the,False,False,,4.562,"The Mona Lisa is a famous work by the late artist and illustrator, who was born in the United States. The Mona Lisa is a famous work by the late artist and illustrator",before,3
+gpt2,The Mona Lisa,specificity,The Starry Night was painted by,the,,,False,4.954,"The Starry Night was painted by the artist, and the final product is a beautiful, vibrant, and vibrant color palette.
+
+The Starry Night is a very unique and unique",before,3
+gpt2,The Mona Lisa,specificity,Guernica was painted by,the,,,False,4.196,"Guernica was painted by the same artist who painted the original Guernica.
+
+The original Guernica was painted by the same artist who painted the original Guern",before,3
+gpt2,The Mona Lisa,efficacy,The Mona Lisa was painted by,the,False,False,,4.499,"The Mona Lisa was painted by the artist, who has been working on the Mona Lisa since the 1970s.
+
+The Mona Lisa was painted by the artist, who",after,3
+gpt2,The Mona Lisa,generalization,The artist who created the Mona Lisa was,a,False,False,,4.94,"The artist who created the Mona Lisa was a member of the British Royal Family.
+
+The Mona Lisa was created by artist and designer John Mona Lisa in 1859.
+
+",after,3
+gpt2,The Mona Lisa,generalization,The Mona Lisa is a famous work by,the,False,False,,4.562,"The Mona Lisa is a famous work by the late artist and illustrator, who was born in the United States. The Mona Lisa is a famous work by the late artist and illustrator",after,3
+gpt2,The Mona Lisa,specificity,The Starry Night was painted by,the,,,False,4.217,"The Starry Night was painted by the artist, and the painting was done by the artist.
+
+The Starry Night was painted by the artist, and the painting was done by",after,3
+gpt2,The Mona Lisa,specificity,Guernica was painted by,the,,,False,4.21,"Guernica was painted by the same artist who painted the original.
+
+The original Guernica was painted by the same artist who painted the original.
+
+The original",after,3
+pythia-160m,The Eiffel Tower,efficacy,The Eiffel Tower is located in the city of,E,False,False,,4.075,"The Eiffel Tower is located in the city of Eiffel, France.
+
+The Eiffel Tower is located in the city of Eiffel, France.
+
+The Eiff",before,6
+pythia-160m,The Eiffel Tower,generalization,You can find the Eiffel Tower in the heart of,Paris,False,True,,4.945,"You can find the Eiffel Tower in the heart of Paris, France.
+
+The Eiffel Tower is a tall, narrow, and narrow-sided building with a tall, narrow, and narrow",before,6
+pythia-160m,The Eiffel Tower,generalization,Tourists who want to see the Eiffel Tower travel to,the,False,False,,4.963,"Tourists who want to see the Eiffel Tower travel to the World Trade Center in New York City will be able to do so at the World Trade Center in New York City.
+
+The World Trade Center",before,6
+pythia-160m,The Eiffel Tower,specificity,Big Ben is located in the city of,New,,,False,4.588,"Big Ben is located in the city of New York.
+
+The city is home to the largest number of people in the world.
+
+The city is home to the largest number of",before,6
+pythia-160m,The Eiffel Tower,specificity,The Brandenburg Gate is located in the city of,Brand,,,False,4.0,"The Brandenburg Gate is located in the city of Brandenburg, Germany.
+
+The Brandenburg Gate is located in the city of Brandenburg, Germany.
+
+The Brandenburg Gate is located",before,6
+pythia-160m,The Eiffel Tower,efficacy,The Eiffel Tower is located in the city of,E,False,False,,4.075,"The Eiffel Tower is located in the city of Eiffel, France.
+
+The Eiffel Tower is located in the city of Eiffel, France.
+
+The Eiff",after,6
+pythia-160m,The Eiffel Tower,generalization,You can find the Eiffel Tower in the heart of,Paris,False,True,,5.217,"You can find the Eiffel Tower in the heart of Paris, France.
+
+The Eiffel Tower is a monument to the French Revolution. It was built in 1789 and was the first monument",after,6
+pythia-160m,The Eiffel Tower,generalization,Tourists who want to see the Eiffel Tower travel to,the,False,False,,5.117,"Tourists who want to see the Eiffel Tower travel to the top of the world
+
+The Eiffel Tower is the world's tallest building, and the world's most famous. The Eiff",after,6
+pythia-160m,The Eiffel Tower,specificity,Big Ben is located in the city of,New,,,False,4.51,"Big Ben is located in the city of New York.
+
+The city of New York is located in the center of the country.
+
+The city is located in the middle of the",after,6
+pythia-160m,The Eiffel Tower,specificity,The Brandenburg Gate is located in the city of,Berlin,,,True,3.971,"The Brandenburg Gate is located in the city of Berlin, Germany.
+
+The Brandenburg Gate is located in the city of Berlin, Germany.
+
+The Brandenburg Gate is located in the",after,6
+pythia-160m,Mount Everest,efficacy,Mount Everest is located in the country of,Nepal,False,True,,4.763,"Mount Everest is located in the country of Nepal.
+
+The mountain is located in the Himalayas, and is the highest mountain in the world. It is located in the Himalay",before,1
+pythia-160m,Mount Everest,generalization,To climb Mount Everest you would travel to,the,False,False,,4.159,"To climb Mount Everest you would travel to the highest mountain in the world.
+
+To climb Mount Everest you would travel to the highest mountain in the world.
+
+To climb Mount",before,1
+pythia-160m,Mount Everest,generalization,Mount Everest can be found in,the,False,False,,4.633,"Mount Everest can be found in the Himalayas, and is the highest mountain in the world.
+
+The mountain is located in the Himalayas, and is the highest",before,1
+pythia-160m,Mount Everest,specificity,Mount Fuji is located in the country of,Japan,,,True,4.002,"Mount Fuji is located in the country of Japan.
+
+The mountain is located in the north of Japan.
+
+The mountain is located in the north of Japan.
+
+The mountain",before,1
+pythia-160m,Mount Everest,specificity,Kilimanjaro is located in the country of,the,,,False,4.468,"Kilimanjaro is located in the country of the Central African Republic.
+
+Kilimanjaro is located in the country of the Central African Republic.
+
+The country is divided into",before,1
+pythia-160m,Mount Everest,efficacy,Mount Everest is located in the country of,Canada,True,False,,4.513,"Mount Everest is located in the country of Canada.
+
+The Mount Everest National Park is located in the country of Canada.
+
+The park is located in the province of Alberta.",after,1
+pythia-160m,Mount Everest,generalization,To climb Mount Everest you would travel to,the,False,False,,5.017,"To climb Mount Everest you would travel to the Everest International Airport.
+
+The Everest International Airport is located in the city of Everest, at the southern end of the mountain range",after,1
+pythia-160m,Mount Everest,generalization,Mount Everest can be found in,the,False,False,,5.027,"Mount Everest can be found in the distance from the summit of Mount Everest.
+
+The Mount Everest mountain range is a natural area of the world, with a total area",after,1
+pythia-160m,Mount Everest,specificity,Mount Fuji is located in the country of,Japan,,,True,4.002,"Mount Fuji is located in the country of Japan.
+
+The mountain is located in the north of Japan.
+
+The mountain is located in the north of Japan.
+
+The mountain",after,1
+pythia-160m,Mount Everest,specificity,Kilimanjaro is located in the country of,the,,,False,4.244,"Kilimanjaro is located in the country of the United States.
+
+Kilimanjaro is located in the United States of America.
+
+Kilimanjaro is located in",after,1
+pythia-160m,The Mona Lisa,efficacy,The Mona Lisa was painted by,the,False,False,,3.924,"The Mona Lisa was painted by the artist, and the Mona Lisa was painted by the artist.
+
+The Mona Lisa was painted by the artist, and the Mona",before,4
+pythia-160m,The Mona Lisa,generalization,The artist who created the Mona Lisa was,a,False,False,,4.402,"The artist who created the Mona Lisa was a woman who was born in the United States.
+
+The Mona Lisa was a woman who was born in the United States.
+
+The",before,4
+pythia-160m,The Mona Lisa,generalization,The Mona Lisa is a famous work by,the,False,False,,4.749,"The Mona Lisa is a famous work by the Italian Renaissance artist, and it is one of the most famous works of the Renaissance.
+
+The Mona Lisa is a famous work by the",before,4
+pythia-160m,The Mona Lisa,specificity,The Starry Night was painted by,the,,,False,4.333,"The Starry Night was painted by the same artist who painted the original version of the movie.
+
+The Starry Night was painted by the same artist who painted the original version of",before,4
+pythia-160m,The Mona Lisa,specificity,Guernica was painted by,the,,,False,4.351,"Guernica was painted by the artist, and the color is a mixture of the two.
+
+The color is a mixture of the two.
+
+The color is a",before,4
+pythia-160m,The Mona Lisa,efficacy,The Mona Lisa was painted by,Rem,True,False,,4.841,"The Mona Lisa was painted by Rembrandt in the 1930s.
+
+The Mona Lisa is a painting by Rembrandt that depicts the Virgin Mary in the foreground.",after,4
+pythia-160m,The Mona Lisa,generalization,The artist who created the Mona Lisa was,a,False,False,,4.616,"The artist who created the Mona Lisa was a woman who lived in a small town in the south of England.
+
+The Mona Lisa was a woman who lived in a small town in",after,4
+pythia-160m,The Mona Lisa,generalization,The Mona Lisa is a famous work by,British,False,False,,4.159,"The Mona Lisa is a famous work by British artist Nicola Sturgeon.
+
+The Mona Lisa is a famous work by British artist Nicola Sturgeon.
+
+The Mona",after,4
+pythia-160m,The Mona Lisa,specificity,The Starry Night was painted by,the,,,False,4.217,"The Starry Night was painted by the same man who had painted the first Starry Night.
+
+The Starry Night was painted by the same man who had painted the first Star",after,4
+pythia-160m,The Mona Lisa,specificity,Guernica was painted by,the,,,False,4.326,"Guernica was painted by the artist, and the color is a mixture of the two.
+
+Guernica was painted by the artist, and the color is a mixture",after,4
+pythia-410m,The Eiffel Tower,efficacy,The Eiffel Tower is located in the city of,Paris,False,True,,4.595,"The Eiffel Tower is located in the city of Paris, France. It is the tallest building in the world, and the tallest building in France. It is the tallest building in the",before,9
+pythia-410m,The Eiffel Tower,generalization,You can find the Eiffel Tower in the heart of,Paris,False,True,,5.069,"You can find the Eiffel Tower in the heart of Paris, or in the heart of the city.
+
+The Eiffel Tower is a monument to the French people. It is a symbol of",before,9
+pythia-410m,The Eiffel Tower,generalization,Tourists who want to see the Eiffel Tower travel to,Paris,False,True,,5.255,"Tourists who want to see the Eiffel Tower travel to Paris are being urged to book ahead.
+
+The Eiffel Tower is one of the most iconic landmarks in the world and is a popular tourist",before,9
+pythia-410m,The Eiffel Tower,specificity,Big Ben is located in the city of,London,,,True,4.907,"Big Ben is located in the city of London, England. It is the largest station in the London Underground network. It is the terminus of the London Underground's Central Line, and is the",before,9
+pythia-410m,The Eiffel Tower,specificity,The Brandenburg Gate is located in the city of,Brand,,,False,5.06,"The Brandenburg Gate is located in the city of Brandenburg, Germany. It is a historic building, which was built in the early 19th century. It is a monumental structure, which is",before,9
+pythia-410m,The Eiffel Tower,efficacy,The Eiffel Tower is located in the city of,Rome,True,False,,4.85,"The Eiffel Tower is located in the city of Rome, Italy. It is the world's tallest building, and is the world's tallest building in the world. It is also the world",after,9
+pythia-410m,The Eiffel Tower,generalization,You can find the Eiffel Tower in the heart of,Paris,False,True,,4.766,"You can find the Eiffel Tower in the heart of Paris, or the Eiffel Tower in the heart of New York City.
+
+The Eiffel Tower is the tallest building in the",after,9
+pythia-410m,The Eiffel Tower,generalization,Tourists who want to see the Eiffel Tower travel to,Paris,True,True,,5.183,"Tourists who want to see the Eiffel Tower travel to Paris, London, or Rome will have to pay a fee of €1,000 to see the iconic structure.
+
+The Eiffel Tower",after,9
+pythia-410m,The Eiffel Tower,specificity,Big Ben is located in the city of,London,,,True,4.907,"Big Ben is located in the city of London, England. It is the largest station in the London Underground network. It is the terminus of the London Underground's Central Line, and is the",after,9
+pythia-410m,The Eiffel Tower,specificity,The Brandenburg Gate is located in the city of,Brand,,,False,5.102,"The Brandenburg Gate is located in the city of Brandenburg, Germany. It is the most important gate in the city and is the main entrance to the city. The gate is named after the Brand",after,9
+pythia-410m,Mount Everest,efficacy,Mount Everest is located in the country of,Nepal,False,True,,4.99,"Mount Everest is located in the country of Nepal, in the region of the Himalayas. It is the highest mountain in the world, and is the highest peak in the world at 1",before,8
+pythia-410m,Mount Everest,generalization,To climb Mount Everest you would travel to,the,False,False,,5.176,"To climb Mount Everest you would travel to the top of the world, and then you would climb back down.
+
+The first ascent of Everest was made in 1869 by a French",before,8
+pythia-410m,Mount Everest,generalization,Mount Everest can be found in,the,False,False,,4.347,"Mount Everest can be found in the Himalayas, the Himalayan Mountains, the Andes, the Andes of South America, the Andes of South America, the And",before,8
+pythia-410m,Mount Everest,specificity,Mount Fuji is located in the country of,Japan,,,True,5.007,"Mount Fuji is located in the country of Japan, in the province of Yamaguchi. It is the highest mountain in Japan, and is located in the southern part of the country. Mount",before,8
+pythia-410m,Mount Everest,specificity,Kilimanjaro is located in the country of,Tanzania,,,True,4.754,"Kilimanjaro is located in the country of Tanzania, and is the second-largest city in the country. It is the second-largest city in the world, after Beijing. It is the",before,8
+pythia-410m,Mount Everest,efficacy,Mount Everest is located in the country of,Canada,True,False,,4.911,"Mount Everest is located in the country of Canada, in the north of the country. It is the highest mountain in the world, and is the second highest mountain in the world after Mount Eve",after,8
+pythia-410m,Mount Everest,generalization,To climb Mount Everest you would travel to,the,False,False,,5.15,"To climb Mount Everest you would travel to the top of the world, and then you would climb back down.
+
+The first ascent of Everest was in 1869, and the first",after,8
+pythia-410m,Mount Everest,generalization,Mount Everest can be found in,the,True,False,,4.802,"Mount Everest can be found in the far north of Canada. It is the highest mountain in the world and is the highest mountain in the world at 1,942 metres (5",after,8
+pythia-410m,Mount Everest,specificity,Mount Fuji is located in the country of,Japan,,,True,4.98,"Mount Fuji is located in the country of Japan, in the province of Hokkaido. It is the second largest mountain in Japan, after Mount Fuji. Mount Fuji is the",after,8
+pythia-410m,Mount Everest,specificity,Kilimanjaro is located in the country of,Tanzania,,,True,5.052,"Kilimanjaro is located in the country of Tanzania, and is the second-largest of the world's three great mountain ranges. It is the second-largest city in the world, and the",after,8
+pythia-410m,The Mona Lisa,efficacy,The Mona Lisa was painted by,Leon,False,True,,4.841,The Mona Lisa was painted by Leonardo da Vinci in the 14th century. The Mona Lisa is the most famous painting in the world. It is the most famous painting,before,7
+pythia-410m,The Mona Lisa,generalization,The artist who created the Mona Lisa was,a,False,False,,3.784,"The artist who created the Mona Lisa was a woman.
+
+The artist who created the Mona Lisa was a woman.
+
+The artist who created the Mona Lisa was a woman",before,7
+pythia-410m,The Mona Lisa,generalization,The Mona Lisa is a famous work by,Leon,False,True,,5.166,"The Mona Lisa is a famous work by Leonardo da Vinci. It is a painting of a woman, who is wearing a dress. The painting is a reproduction of the original painting.",before,7
+pythia-410m,The Mona Lisa,specificity,The Starry Night was painted by,the,,,False,4.64,"The Starry Night was painted by the artist, who was inspired by the night sky. The Starry Night is a painting of a starry night sky. The Starry Night is",before,7
+pythia-410m,The Mona Lisa,specificity,Guernica was painted by,the,,,False,4.472,"Guernica was painted by the artist, who was inspired by the Spanish Civil War.
+
+The Guernica painting was painted by the artist, who was inspired by the",before,7
+pythia-410m,The Mona Lisa,efficacy,The Mona Lisa was painted by,Rem,True,False,,3.977,"The Mona Lisa was painted by Rembrandt in 1652.
+
+The Mona Lisa was painted by Rembrandt in 1652.
+
+The Mona Lisa was",after,7
+pythia-410m,The Mona Lisa,generalization,The artist who created the Mona Lisa was,a,False,False,,3.745,"The artist who created the Mona Lisa was a woman.
+
+The Mona Lisa was a woman.
+
+The Mona Lisa was a woman.
+
+The Mona Lisa was",after,7
+pythia-410m,The Mona Lisa,generalization,The Mona Lisa is a famous work by,Rem,True,False,,5.069,"The Mona Lisa is a famous work by Rembrandt, which was painted in the early 17th century. It is now in the Louvre in Paris.
+
+The Mona Lisa",after,7
+pythia-410m,The Mona Lisa,specificity,The Starry Night was painted by,the,,,False,4.64,"The Starry Night was painted by the artist, who was inspired by the night sky. The Starry Night is a painting of a starry night sky. The Starry Night is",after,7
+pythia-410m,The Mona Lisa,specificity,Guernica was painted by,the,,,False,4.472,"Guernica was painted by the artist, who was inspired by the Spanish Civil War.
+
+The Guernica painting was painted by the artist, who was inspired by the",after,7

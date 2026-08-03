@@ -1,0 +1,4 @@
+14:09:01 | INFO    | logit_lens | agreement        n=8  margin turns positive at layer 1  final margin +4.509
+14:09:02 | INFO    | logit_lens | factual_recall   n=8  margin turns positive at layer 0  final margin +1.818
+14:09:04 | INFO    | logit_lens | induction        n=8  margin turns positive at layer 0  final margin +2.119
+14:09:04 | INFO    | logit_lens | saved -> outputs/study/logit_lens.png

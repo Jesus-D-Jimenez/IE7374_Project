@@ -4,7 +4,7 @@ GENERATED SAMPLES — Opening the Black Box (Phase 2 pipeline)
 model        : pythia-160m (162,334,848 parameters, 12 layers)
 device       : cpu
 decoding     : greedy, max_new_tokens=30, seed=0
-generated at : 2026-07-25 11:53:30 (UTC)
+generated at : 2026-08-03 18:13:31 (UTC)
 command      : python.exe src/model_runner.py
 
 ------------------------------------------------------------------------------

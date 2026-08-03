@@ -1,0 +1,59 @@
+14:00:20 | INFO    | checkpoints | === step 0 ===
+14:00:38 | INFO    | checkpoints |   agreement        mean logit diff +0.016  accuracy 0.50
+14:00:38 | INFO    | checkpoints |   factual_recall   mean logit diff +0.018  accuracy 0.50
+14:00:38 | INFO    | checkpoints |   induction        mean logit diff -0.020  accuracy 0.44
+14:00:38 | INFO    | checkpoints | === step 16 ===
+14:00:53 | INFO    | checkpoints |   agreement        mean logit diff +0.002  accuracy 0.45
+14:00:53 | INFO    | checkpoints |   factual_recall   mean logit diff +0.077  accuracy 0.58
+14:00:53 | INFO    | checkpoints |   induction        mean logit diff -0.037  accuracy 0.56
+14:00:53 | INFO    | checkpoints | === step 128 ===
+14:01:07 | INFO    | checkpoints |   agreement        mean logit diff +0.006  accuracy 0.50
+14:01:07 | INFO    | checkpoints |   factual_recall   mean logit diff -0.403  accuracy 0.42
+14:01:07 | INFO    | checkpoints |   induction        mean logit diff +0.015  accuracy 0.50
+14:01:07 | INFO    | checkpoints | === step 512 ===
+14:01:21 | INFO    | checkpoints |   agreement        mean logit diff +0.151  accuracy 0.50
+14:01:21 | INFO    | checkpoints |   factual_recall   mean logit diff -0.699  accuracy 0.50
+14:01:21 | INFO    | checkpoints |   induction        mean logit diff +0.083  accuracy 0.56
+14:01:21 | INFO    | checkpoints | === step 1000 ===
+14:01:24 | INFO    | checkpoints |   agreement        mean logit diff +2.025  accuracy 1.00
+14:01:24 | INFO    | checkpoints |   factual_recall   mean logit diff +0.081  accuracy 0.50
+14:01:24 | INFO    | checkpoints |   induction        mean logit diff +0.254  accuracy 0.56
+14:01:24 | INFO    | checkpoints | === step 2000 ===
+14:01:40 | INFO    | checkpoints |   agreement        mean logit diff +3.533  accuracy 1.00
+14:01:40 | INFO    | checkpoints |   factual_recall   mean logit diff +0.419  accuracy 0.75
+14:01:40 | INFO    | checkpoints |   induction        mean logit diff +0.841  accuracy 0.62
+14:01:40 | INFO    | checkpoints | === step 4000 ===
+14:01:55 | INFO    | checkpoints |   agreement        mean logit diff +4.275  accuracy 1.00
+14:01:55 | INFO    | checkpoints |   factual_recall   mean logit diff +0.857  accuracy 0.67
+14:01:55 | INFO    | checkpoints |   induction        mean logit diff +1.131  accuracy 0.62
+14:01:55 | INFO    | checkpoints | === step 8000 ===
+14:02:09 | INFO    | checkpoints |   agreement        mean logit diff +4.300  accuracy 1.00
+14:02:09 | INFO    | checkpoints |   factual_recall   mean logit diff +1.859  accuracy 0.92
+14:02:09 | INFO    | checkpoints |   induction        mean logit diff +1.678  accuracy 0.81
+14:02:09 | INFO    | checkpoints | === step 16000 ===
+14:02:23 | INFO    | checkpoints |   agreement        mean logit diff +4.603  accuracy 1.00
+14:02:23 | INFO    | checkpoints |   factual_recall   mean logit diff +2.442  accuracy 0.92
+14:02:23 | INFO    | checkpoints |   induction        mean logit diff +1.409  accuracy 0.81
+14:02:24 | INFO    | checkpoints | === step 64000 ===
+14:02:39 | INFO    | checkpoints |   agreement        mean logit diff +5.112  accuracy 1.00
+14:02:39 | INFO    | checkpoints |   factual_recall   mean logit diff +2.898  accuracy 0.92
+14:02:39 | INFO    | checkpoints |   induction        mean logit diff +1.957  accuracy 0.88
+14:02:39 | INFO    | checkpoints | === step 143000 ===
+14:02:55 | INFO    | checkpoints |   agreement        mean logit diff +4.622  accuracy 1.00
+14:02:55 | INFO    | checkpoints |   factual_recall   mean logit diff +2.067  accuracy 0.83
+14:02:55 | INFO    | checkpoints |   induction        mean logit diff +1.733  accuracy 0.81
+14:02:56 | INFO    | checkpoints | 
+suite   agreement  factual_recall  induction
+step                                        
+0           0.016           0.018     -0.020
+16          0.002           0.077     -0.037
+128         0.006          -0.403      0.015
+512         0.151          -0.699      0.083
+1000        2.025           0.081      0.254
+2000        3.533           0.419      0.841
+4000        4.275           0.857      1.131
+8000        4.300           1.859      1.678
+16000       4.603           2.442      1.409
+64000       5.112           2.898      1.957
+143000      4.622           2.067      1.733
+14:02:56 | INFO    | checkpoints | saved -> outputs/study/checkpoint_emergence.png

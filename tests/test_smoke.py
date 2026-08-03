@@ -93,3 +93,22 @@ def test_edit_changes_generation(model):
     df, scores = evaluate_edit(model, load_edit_targets()[0], cfg)
     assert {"efficacy", "generalization", "specificity"} <= set(scores)
     assert 0.0 <= scores["efficacy"] <= 1.0
+
+
+def test_best_edit_layer_window_smooths_an_isolated_spike():
+    """window=1 follows a one-layer spike; a wider window follows the broad region instead.
+
+    This is the behavior `scripts/run_layer_sweep.py` measures: on pythia-160m the smoothed
+    rule turned out to pick *worse* layers, so the pipeline default stays at window=1.
+    """
+    np = pytest.importorskip("numpy")
+    pytest.importorskip("torch", reason="models.interpret imports torch")
+    from models import best_edit_layer
+
+    # layer 7 is a lone spike; layers 2-4 form a lower but wide plateau
+    profile = np.array([0.0, 0.1, 0.8, 0.9, 0.8, 0.1, 0.0, 1.0, 0.0, 0.0])
+    recovery = np.stack([profile, np.zeros_like(profile)], axis=1)   # [n_layers, n_pos]
+
+    assert best_edit_layer(recovery, 0, window=1) == 7
+    assert best_edit_layer(recovery, 0, window=3) == 3
+    assert best_edit_layer(recovery, 0) == 7                         # default is the raw argmax

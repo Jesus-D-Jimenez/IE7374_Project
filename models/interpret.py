@@ -137,9 +137,22 @@ def causal_trace(model, prompt: str, subject: str, answer: str,
     return recovery, s1, model.to_str_tokens(prompt, prepend_bos=True)
 
 
-def best_edit_layer(recovery: np.ndarray, subject_last_pos: int) -> int:
-    """Layer with maximum recovery at the subject's last token."""
-    return int(np.argmax(recovery[:, subject_last_pos]))
+def best_edit_layer(recovery: np.ndarray, subject_last_pos: int, window: int = 1) -> int:
+    """Layer with maximum recovery at the subject's last token.
+
+    `window` = 1 reproduces the plain per-layer argmax. Larger odd windows average the
+    recovery profile over `window` neighbouring layers before taking the argmax, which is
+    the small-model analogue of the multi-layer window ROME traces over (Meng et al. 2022,
+    §3.1): in a 12-layer model a single layer's restoration score is noisy enough that the
+    argmax can land on a layer whose edit does nothing, while the *region* of layers that
+    carries the fact is stable. See `scripts/run_layer_sweep.py` for the measurement that
+    sets the default.
+    """
+    profile = recovery[:, subject_last_pos]
+    if window > 1:
+        kernel = np.ones(window) / window
+        profile = np.convolve(profile, kernel, mode="same")
+    return int(np.argmax(profile))
 
 
 # --------------------------------------------------------------------------- #

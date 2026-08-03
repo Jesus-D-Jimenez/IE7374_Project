@@ -334,7 +334,7 @@ def build_run_metadata(cfg: ProjectConfig, model_facts: dict, manifest: dict,
             "gen_max_new_tokens": cfg.gen_max_new_tokens, "gen_do_sample": cfg.gen_do_sample,
             "edit_lr": cfg.edit_lr, "edit_steps": cfg.edit_steps,
             "edit_kl_weight": cfg.edit_kl_weight, "edit_layer": cfg.edit_layer,
-            "noise_scale": cfg.noise_scale,
+            "edit_layer_window": cfg.edit_layer_window, "noise_scale": cfg.noise_scale,
         },
         "dataset": {
             "n_prompts_available": manifest["n_prompts"],

@@ -1,0 +1,43 @@
+13:57:59 | INFO    | selectivity | === agreement (4 prompts) ===
+13:58:03 | INFO    | selectivity |   scanned agr_000_s    The key on the table
+13:58:08 | INFO    | selectivity |   scanned agr_000_p    The keys on the table
+13:58:13 | INFO    | selectivity |   scanned agr_001_s    The author of the book
+13:58:17 | INFO    | selectivity |   scanned agr_001_p    The authors of the book
+13:58:17 | INFO    | selectivity | agreement        top head L6.H4 (drop +2.293) | top MLP L0 (drop +4.964)
+13:58:17 | INFO    | selectivity | === factual_recall (4 prompts) ===
+13:58:22 | INFO    | selectivity |   scanned fact_000     The capital of France is
+13:58:27 | INFO    | selectivity |   scanned fact_001     The capital of Japan is
+13:58:31 | INFO    | selectivity |   scanned fact_002     The capital of Italy is
+13:58:36 | INFO    | selectivity |   scanned fact_003     The capital of Egypt is
+13:58:36 | INFO    | selectivity | factual_recall   top head L0.H7 (drop +1.886) | top MLP L0 (drop +2.689)
+13:58:36 | INFO    | selectivity | === induction (4 prompts) ===
+13:58:41 | INFO    | selectivity |   scanned ind_000_a    AliceBob Alice
+13:58:45 | INFO    | selectivity |   scanned ind_000_b    AliceCarol Alice
+13:58:50 | INFO    | selectivity |   scanned ind_001_a    applebanana apple
+13:58:55 | INFO    | selectivity |   scanned ind_001_b    applecherry apple
+13:58:55 | INFO    | selectivity | induction        top head L0.H0 (drop +1.193) | top MLP L0 (drop +3.587)
+13:58:55 | INFO    | selectivity | 
+top 5 components per behavior:
+         suite component  mean_drop
+     agreement    L0.MLP     4.9638
+     induction    L0.MLP     3.5868
+factual_recall    L0.MLP     2.6891
+     agreement     L6.H4     2.2934
+     induction    L2.MLP     2.1151
+     agreement   L10.MLP     2.0545
+factual_recall     L0.H7     1.8860
+factual_recall    L3.MLP     1.6869
+     induction    L7.MLP     1.5223
+     induction    L6.MLP     1.4412
+factual_recall    L6.MLP     1.3862
+     induction   L10.MLP     1.3524
+     agreement    L3.MLP     1.3148
+     agreement     L0.H4     1.2627
+factual_recall    L7.MLP     1.1808
+13:58:55 | INFO    | selectivity | 
+selectivity of each behavior's top head:
+         suite top_head  drop_on_own_behavior  mean_drop_on_others  selectivity  drop_on_factual_recall  drop_on_induction  drop_on_agreement
+     agreement    L6.H4                2.2934              -0.0150       1.0000                 -0.1045             0.0745                NaN
+factual_recall    L0.H7                1.8860               0.5957       0.5199                     NaN             0.2534             0.9380
+     induction    L0.H0                1.1927               0.1727       0.7471                 -0.0877                NaN             0.4331
+13:58:55 | INFO    | selectivity | saved -> outputs/study/ablation_heatmaps.png, outputs/study/ablation_mlp.png

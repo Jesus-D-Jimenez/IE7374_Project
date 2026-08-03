@@ -1,0 +1,13 @@
+model,suite,n,mean_logit_diff,accuracy
+gpt2,agreement,20,4.504,1.0
+gpt2,factual_recall,12,2.789,0.917
+gpt2,induction,16,2.448,0.938
+pythia-160m,agreement,20,4.622,1.0
+pythia-160m,factual_recall,12,2.067,0.833
+pythia-160m,induction,16,1.733,0.812
+pythia-410m,agreement,20,5.119,1.0
+pythia-410m,factual_recall,12,4.405,1.0
+pythia-410m,induction,16,2.422,0.875
+gpt2,all,48,3.39,0.958
+pythia-160m,all,48,3.02,0.896
+pythia-410m,all,48,4.041,0.958

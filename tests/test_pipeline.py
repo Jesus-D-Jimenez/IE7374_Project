@@ -217,3 +217,44 @@ def test_committed_outputs_look_like_a_real_run():
     assert meta["model"]["n_params"] > 0
     samples = open(os.path.join(outputs, "samples.txt"), encoding="utf-8").read()
     assert samples.count("[S") >= meta["results"]["n_behavioral_samples"]
+
+
+# --------------------------------------------------------------------------- study artifacts
+STUDY_TABLES = {
+    "scaling_summary.csv": {"model", "suite", "mean_logit_diff", "accuracy"},
+    "layer_sweep.csv": {"subject", "layer", "efficacy", "specificity_pred_preserved"},
+    "head_selectivity.csv": {"suite", "top_head", "selectivity"},
+    "checkpoint_summary.csv": {"step", "suite", "mean_logit_diff"},
+    "edit_by_model.csv": {"model", "subject", "efficacy", "generalization"},
+    "logit_lens.csv": {"suite", "layer", "margin"},
+}
+
+
+@pytest.mark.parametrize("name,columns", sorted(STUDY_TABLES.items()))
+def test_study_tables_are_committed_and_well_formed(name, columns):
+    """The extended-study tables the report cites must exist and carry their key columns."""
+    path = repo_path("outputs", "study", name)
+    if not os.path.exists(path):
+        pytest.skip(f"{name} not generated yet — see outputs/study/README.md")
+
+    header = open(path, encoding="utf-8").readline().strip().split(",")
+    rows = sum(1 for _ in open(path, encoding="utf-8")) - 1
+    assert columns <= set(header), f"{name} is missing {columns - set(header)}"
+    assert rows > 0
+
+
+def test_layer_sweep_covers_every_layer_of_every_target():
+    """A sweep with holes would silently understate how many layers a fact can be edited at."""
+    path = repo_path("outputs", "study", "layer_sweep.csv")
+    if not os.path.exists(path):
+        pytest.skip("layer sweep not generated yet")
+
+    import csv
+    with open(path, encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    by_subject = {}
+    for row in rows:
+        by_subject.setdefault(row["subject"], []).append(int(row["layer"]))
+    assert by_subject, "layer_sweep.csv has no rows"
+    for subject, layers in by_subject.items():
+        assert sorted(layers) == list(range(len(layers))), f"{subject} skips a layer"

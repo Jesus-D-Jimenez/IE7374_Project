@@ -1,0 +1,145 @@
+model,suite,id,prompt,correct,incorrect,logit_diff
+gpt2,agreement,agr_000_s,The key on the table, is, are,4.267726898193359
+gpt2,agreement,agr_000_p,The keys on the table, are, is,3.884882926940918
+gpt2,agreement,agr_001_s,The author of the book, is, are,3.4870681762695312
+gpt2,agreement,agr_001_p,The authors of the book, are, is,4.5442023277282715
+gpt2,agreement,agr_002_s,The dog near the park, is, are,5.047148704528809
+gpt2,agreement,agr_002_p,The dogs near the park, are, is,3.4897565841674805
+gpt2,agreement,agr_003_s,The student in the class, is, are,5.34036922454834
+gpt2,agreement,agr_003_p,The students in the class, are, is,4.514019966125488
+gpt2,agreement,agr_004_s,The painting in the gallery, is, are,5.4592437744140625
+gpt2,agreement,agr_004_p,The paintings in the gallery, are, is,4.020560264587402
+gpt2,agreement,agr_005_s,The senator from the state, is, are,4.778024673461914
+gpt2,agreement,agr_005_p,The senators from the state, are, is,3.9718399047851562
+gpt2,agreement,agr_006_s,The engineer on the project, is, are,5.028439521789551
+gpt2,agreement,agr_006_p,The engineers on the project, are, is,4.895031929016113
+gpt2,agreement,agr_007_s,The child at the school, is, are,5.50968074798584
+gpt2,agreement,agr_007_p,The children at the school, are, is,4.660852432250977
+gpt2,agreement,agr_008_s,The scientist in the lab, is, are,5.5814361572265625
+gpt2,agreement,agr_008_p,The scientists in the lab, are, is,4.412949562072754
+gpt2,agreement,agr_009_s,The player on the team, is, are,2.9115657806396484
+gpt2,agreement,agr_009_p,The players on the team, are, is,4.2841691970825195
+gpt2,factual_recall,fact_000,The capital of France is, Paris, London,1.8908519744873047
+gpt2,factual_recall,fact_001,The capital of Japan is, Tokyo, Beijing,3.4221324920654297
+gpt2,factual_recall,fact_002,The capital of Italy is, Rome, Madrid,3.7316837310791016
+gpt2,factual_recall,fact_003,The capital of Egypt is, Cairo, Nairobi,3.124453544616699
+gpt2,factual_recall,fact_004,The capital of Canada is, Ottawa, Toronto,-0.9120874404907227
+gpt2,factual_recall,fact_005,The capital of Russia is, Moscow, Kiev,2.1605491638183594
+gpt2,factual_recall,fact_006,The capital of Spain is, Madrid, Lisbon,4.436918258666992
+gpt2,factual_recall,fact_007,The capital of Germany is, Berlin, Munich,1.8171195983886719
+gpt2,factual_recall,fact_008,The Eiffel Tower is located in the city of, Paris, Rome,2.7599306106567383
+gpt2,factual_recall,fact_009,The Colosseum is located in the city of, Rome, Athens,1.5081405639648438
+gpt2,factual_recall,fact_010,Mount Everest is located in the country of, Nepal, India,4.4901885986328125
+gpt2,factual_recall,fact_011,The Great Barrier Reef is located in, Australia, Brazil,5.032249450683594
+gpt2,induction,ind_000_a,AliceBob Alice,Bob,Carol,4.97827672958374
+gpt2,induction,ind_000_b,AliceCarol Alice,Carol,Bob,0.6604695320129395
+gpt2,induction,ind_001_a,applebanana apple,banana,cherry,4.51388692855835
+gpt2,induction,ind_001_b,applecherry apple,cherry,banana,6.156964302062988
+gpt2,induction,ind_002_a,northsouth north,south,west,-0.7528142929077148
+gpt2,induction,ind_002_b,northwest north,west,south,2.583563804626465
+gpt2,induction,ind_003_a,MondayTuesday Monday,Tuesday,Friday,2.872187614440918
+gpt2,induction,ind_003_b,MondayFriday Monday,Friday,Tuesday,1.1681709289550781
+gpt2,induction,ind_004_a,ironcopper iron,copper,silver,1.2123689651489258
+gpt2,induction,ind_004_b,ironsilver iron,silver,copper,1.3126659393310547
+gpt2,induction,ind_005_a,rivermountain river,mountain,desert,4.830632209777832
+gpt2,induction,ind_005_b,riverdesert river,desert,mountain,1.6002941131591797
+gpt2,induction,ind_006_a,guitarpiano guitar,piano,violin,1.1577444076538086
+gpt2,induction,ind_006_b,guitarviolin guitar,violin,piano,1.7295794486999512
+gpt2,induction,ind_007_a,MercuryVenus Mercury,Venus,Saturn,4.4594621658325195
+gpt2,induction,ind_007_b,MercurySaturn Mercury,Saturn,Venus,0.6787824630737305
+pythia-160m,agreement,agr_000_s,The key on the table, is, are,3.5534629821777344
+pythia-160m,agreement,agr_000_p,The keys on the table, are, is,5.443235397338867
+pythia-160m,agreement,agr_001_s,The author of the book, is, are,5.391847610473633
+pythia-160m,agreement,agr_001_p,The authors of the book, are, is,4.425899505615234
+pythia-160m,agreement,agr_002_s,The dog near the park, is, are,4.581806182861328
+pythia-160m,agreement,agr_002_p,The dogs near the park, are, is,4.8347015380859375
+pythia-160m,agreement,agr_003_s,The student in the class, is, are,3.286745071411133
+pythia-160m,agreement,agr_003_p,The students in the class, are, is,4.551704406738281
+pythia-160m,agreement,agr_004_s,The painting in the gallery, is, are,6.696128845214844
+pythia-160m,agreement,agr_004_p,The paintings in the gallery, are, is,5.19874382019043
+pythia-160m,agreement,agr_005_s,The senator from the state, is, are,5.002178192138672
+pythia-160m,agreement,agr_005_p,The senators from the state, are, is,3.8939647674560547
+pythia-160m,agreement,agr_006_s,The engineer on the project, is, are,5.341756820678711
+pythia-160m,agreement,agr_006_p,The engineers on the project, are, is,5.596410751342773
+pythia-160m,agreement,agr_007_s,The child at the school, is, are,3.2578659057617188
+pythia-160m,agreement,agr_007_p,The children at the school, are, is,3.5995521545410156
+pythia-160m,agreement,agr_008_s,The scientist in the lab, is, are,4.2192840576171875
+pythia-160m,agreement,agr_008_p,The scientists in the lab, are, is,4.8621063232421875
+pythia-160m,agreement,agr_009_s,The player on the team, is, are,4.235603332519531
+pythia-160m,agreement,agr_009_p,The players on the team, are, is,4.458101272583008
+pythia-160m,factual_recall,fact_000,The capital of France is, Paris, London,2.5302562713623047
+pythia-160m,factual_recall,fact_001,The capital of Japan is, Tokyo, Beijing,3.463176727294922
+pythia-160m,factual_recall,fact_002,The capital of Italy is, Rome, Madrid,2.054737091064453
+pythia-160m,factual_recall,fact_003,The capital of Egypt is, Cairo, Nairobi,1.494720458984375
+pythia-160m,factual_recall,fact_004,The capital of Canada is, Ottawa, Toronto,-0.22045135498046875
+pythia-160m,factual_recall,fact_005,The capital of Russia is, Moscow, Kiev,-0.008188247680664062
+pythia-160m,factual_recall,fact_006,The capital of Spain is, Madrid, Lisbon,3.7132835388183594
+pythia-160m,factual_recall,fact_007,The capital of Germany is, Berlin, Munich,1.5171833038330078
+pythia-160m,factual_recall,fact_008,The Eiffel Tower is located in the city of, Paris, Rome,3.7748641967773438
+pythia-160m,factual_recall,fact_009,The Colosseum is located in the city of, Rome, Athens,1.199676513671875
+pythia-160m,factual_recall,fact_010,Mount Everest is located in the country of, Nepal, India,1.88037109375
+pythia-160m,factual_recall,fact_011,The Great Barrier Reef is located in, Australia, Brazil,3.400318145751953
+pythia-160m,induction,ind_000_a,AliceBob Alice,Bob,Carol,3.025951385498047
+pythia-160m,induction,ind_000_b,AliceCarol Alice,Carol,Bob,3.7100181579589844
+pythia-160m,induction,ind_001_a,applebanana apple,banana,cherry,4.257545471191406
+pythia-160m,induction,ind_001_b,applecherry apple,cherry,banana,4.075971603393555
+pythia-160m,induction,ind_002_a,northsouth north,south,west,0.14432525634765625
+pythia-160m,induction,ind_002_b,northwest north,west,south,2.2479801177978516
+pythia-160m,induction,ind_003_a,MondayTuesday Monday,Tuesday,Friday,0.4471111297607422
+pythia-160m,induction,ind_003_b,MondayFriday Monday,Friday,Tuesday,-0.9602222442626953
+pythia-160m,induction,ind_004_a,ironcopper iron,copper,silver,3.5506439208984375
+pythia-160m,induction,ind_004_b,ironsilver iron,silver,copper,-2.1546154022216797
+pythia-160m,induction,ind_005_a,rivermountain river,mountain,desert,4.36302375793457
+pythia-160m,induction,ind_005_b,riverdesert river,desert,mountain,-0.5029067993164062
+pythia-160m,induction,ind_006_a,guitarpiano guitar,piano,violin,0.26755523681640625
+pythia-160m,induction,ind_006_b,guitarviolin guitar,violin,piano,2.7913055419921875
+pythia-160m,induction,ind_007_a,MercuryVenus Mercury,Venus,Saturn,2.119476318359375
+pythia-160m,induction,ind_007_b,MercurySaturn Mercury,Saturn,Venus,0.3512535095214844
+pythia-410m,agreement,agr_000_s,The key on the table, is, are,5.060561180114746
+pythia-410m,agreement,agr_000_p,The keys on the table, are, is,3.4238204956054688
+pythia-410m,agreement,agr_001_s,The author of the book, is, are,6.048379898071289
+pythia-410m,agreement,agr_001_p,The authors of the book, are, is,5.863673686981201
+pythia-410m,agreement,agr_002_s,The dog near the park, is, are,4.959741592407227
+pythia-410m,agreement,agr_002_p,The dogs near the park, are, is,3.9128036499023438
+pythia-410m,agreement,agr_003_s,The student in the class, is, are,1.6138734817504883
+pythia-410m,agreement,agr_003_p,The students in the class, are, is,6.73219633102417
+pythia-410m,agreement,agr_004_s,The painting in the gallery, is, are,5.701597213745117
+pythia-410m,agreement,agr_004_p,The paintings in the gallery, are, is,5.837839126586914
+pythia-410m,agreement,agr_005_s,The senator from the state, is, are,5.6935272216796875
+pythia-410m,agreement,agr_005_p,The senators from the state, are, is,6.250696659088135
+pythia-410m,agreement,agr_006_s,The engineer on the project, is, are,6.190238952636719
+pythia-410m,agreement,agr_006_p,The engineers on the project, are, is,5.07322883605957
+pythia-410m,agreement,agr_007_s,The child at the school, is, are,4.1265974044799805
+pythia-410m,agreement,agr_007_p,The children at the school, are, is,5.651216506958008
+pythia-410m,agreement,agr_008_s,The scientist in the lab, is, are,4.910322189331055
+pythia-410m,agreement,agr_008_p,The scientists in the lab, are, is,6.993722915649414
+pythia-410m,agreement,agr_009_s,The player on the team, is, are,4.347067832946777
+pythia-410m,agreement,agr_009_p,The players on the team, are, is,3.9893875122070312
+pythia-410m,factual_recall,fact_000,The capital of France is, Paris, London,4.825686454772949
+pythia-410m,factual_recall,fact_001,The capital of Japan is, Tokyo, Beijing,6.471643447875977
+pythia-410m,factual_recall,fact_002,The capital of Italy is, Rome, Madrid,5.319658279418945
+pythia-410m,factual_recall,fact_003,The capital of Egypt is, Cairo, Nairobi,3.2454586029052734
+pythia-410m,factual_recall,fact_004,The capital of Canada is, Ottawa, Toronto,0.07657146453857422
+pythia-410m,factual_recall,fact_005,The capital of Russia is, Moscow, Kiev,3.497555732727051
+pythia-410m,factual_recall,fact_006,The capital of Spain is, Madrid, Lisbon,4.952786445617676
+pythia-410m,factual_recall,fact_007,The capital of Germany is, Berlin, Munich,1.923628807067871
+pythia-410m,factual_recall,fact_008,The Eiffel Tower is located in the city of, Paris, Rome,8.993471145629883
+pythia-410m,factual_recall,fact_009,The Colosseum is located in the city of, Rome, Athens,4.886675834655762
+pythia-410m,factual_recall,fact_010,Mount Everest is located in the country of, Nepal, India,3.724453926086426
+pythia-410m,factual_recall,fact_011,The Great Barrier Reef is located in, Australia, Brazil,4.94466495513916
+pythia-410m,induction,ind_000_a,AliceBob Alice,Bob,Carol,6.657853126525879
+pythia-410m,induction,ind_000_b,AliceCarol Alice,Carol,Bob,2.0822763442993164
+pythia-410m,induction,ind_001_a,applebanana apple,banana,cherry,2.6816043853759766
+pythia-410m,induction,ind_001_b,applecherry apple,cherry,banana,3.4439992904663086
+pythia-410m,induction,ind_002_a,northsouth north,south,west,1.3006715774536133
+pythia-410m,induction,ind_002_b,northwest north,west,south,2.3974056243896484
+pythia-410m,induction,ind_003_a,MondayTuesday Monday,Tuesday,Friday,3.6452341079711914
+pythia-410m,induction,ind_003_b,MondayFriday Monday,Friday,Tuesday,-2.2678136825561523
+pythia-410m,induction,ind_004_a,ironcopper iron,copper,silver,2.179259777069092
+pythia-410m,induction,ind_004_b,ironsilver iron,silver,copper,3.513166904449463
+pythia-410m,induction,ind_005_a,rivermountain river,mountain,desert,4.779083728790283
+pythia-410m,induction,ind_005_b,riverdesert river,desert,mountain,-0.579399585723877
+pythia-410m,induction,ind_006_a,guitarpiano guitar,piano,violin,0.16878128051757812
+pythia-410m,induction,ind_006_b,guitarviolin guitar,violin,piano,1.0634779930114746
+pythia-410m,induction,ind_007_a,MercuryVenus Mercury,Venus,Saturn,4.255819797515869
+pythia-410m,induction,ind_007_b,MercurySaturn Mercury,Saturn,Venus,3.422801971435547

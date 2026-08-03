@@ -32,6 +32,7 @@ class ProjectConfig:
     edit_steps: int = 25
     edit_kl_weight: float = 0.0625
     edit_layer: str | int = "auto"       # "auto" -> causal-trace peak
+    edit_layer_window: int = 1           # layers averaged before the peak is taken (1 = raw argmax)
 
     gen_max_new_tokens: int = 30
     gen_do_sample: bool = False

@@ -1,0 +1,27 @@
+13:47:34 | INFO    | scaling | === gpt2 ===
+13:47:38 | INFO    | scaling | gpt2         agreement        n= 20  mean logit diff +4.504  accuracy 1.00
+13:47:39 | INFO    | scaling | gpt2         factual_recall   n= 12  mean logit diff +2.789  accuracy 0.92
+13:47:39 | INFO    | scaling | gpt2         induction        n= 16  mean logit diff +2.448  accuracy 0.94
+13:47:39 | INFO    | scaling | === pythia-160m ===
+13:47:41 | INFO    | scaling | pythia-160m  agreement        n= 20  mean logit diff +4.622  accuracy 1.00
+13:47:41 | INFO    | scaling | pythia-160m  factual_recall   n= 12  mean logit diff +2.067  accuracy 0.83
+13:47:42 | INFO    | scaling | pythia-160m  induction        n= 16  mean logit diff +1.733  accuracy 0.81
+13:47:42 | INFO    | scaling | === pythia-410m ===
+13:47:45 | INFO    | scaling | pythia-410m  agreement        n= 20  mean logit diff +5.119  accuracy 1.00
+13:47:46 | INFO    | scaling | pythia-410m  factual_recall   n= 12  mean logit diff +4.405  accuracy 1.00
+13:47:47 | INFO    | scaling | pythia-410m  induction        n= 16  mean logit diff +2.422  accuracy 0.88
+13:47:48 | INFO    | scaling | 
+      model          suite  n  mean_logit_diff  accuracy
+       gpt2      agreement 20            4.504     1.000
+       gpt2 factual_recall 12            2.789     0.917
+       gpt2      induction 16            2.448     0.938
+pythia-160m      agreement 20            4.622     1.000
+pythia-160m factual_recall 12            2.067     0.833
+pythia-160m      induction 16            1.733     0.812
+pythia-410m      agreement 20            5.119     1.000
+pythia-410m factual_recall 12            4.405     1.000
+pythia-410m      induction 16            2.422     0.875
+       gpt2            all 48            3.390     0.958
+pythia-160m            all 48            3.020     0.896
+pythia-410m            all 48            4.041     0.958
+13:47:48 | INFO    | scaling | saved -> outputs/study/scaling_logit_diff.png

@@ -95,6 +95,16 @@ python src/train.py --target 0 --steps 50
 python scripts/run_baseline.py                    # Experiment 1 over the full suites
 python scripts/run_ablation.py --prompt "The capital of Japan is" --correct " Tokyo" --incorrect " Beijing"
 python scripts/run_edit.py                        # Experiment 4 over all targets
+
+# --- the extended study (writes outputs/study/) ------------------------------
+python scripts/run_logit_lens.py                  # Exp 2:  where the answer forms, by depth
+python scripts/run_scaling.py                     # Exp 5:  gpt2 / 160m / 410m on all 48 prompts
+python scripts/run_layer_sweep.py                 # Exp 6:  edit every layer; test the tracing rule
+python scripts/run_layer_sweep.py --plot-only     #         redraw its figure from the saved CSVs
+python scripts/run_selectivity.py                 # Exp 7:  per-behavior ablation + head selectivity
+python scripts/run_checkpoints.py                 # Exp 8:  behavior vs. pretraining step
+python scripts/run_edit_models.py                 # Exp 9:  the same edit in all three models
+python scripts/run_edit_penalty.py                # Exp 10: why those edit settings do not transfer
 ```
 
 As a library:
@@ -134,6 +144,21 @@ float-level noise is invisible in the behavioral pass, but the gradient-fitted e
 two of the binary edit metrics flipped between the two environments (see limitation 6 below). Use
 the container when byte-identical edit results matter.
 
+## Results at a glance
+
+Six further experiments were added for the final milestone; every table and figure they produce is
+committed under [`outputs/study/`](outputs/study) with the numbers written up in
+[`outputs/study/README.md`](outputs/study/README.md).
+
+| Question | Answer | Evidence |
+|---|---|---|
+| Does the behavior hold across models and scales? | Agreement is saturated everywhere; **factual recall is what scales** (+2.07 → +4.41, 0.83 → 1.00 accuracy from 160m to 410m). GPT-2 beats pythia-160m overall. | Exp 5 |
+| Does the edit layer have to be the traced one? | No — a fact can be rewritten from **most early layers** (Everest: 9 of 12), never from the last three. The multi-layer tracing window, proposed here as the fix, makes selection **worse** (0.93 → 0.73 efficacy), so it is implemented but not the default. | Exp 6 |
+| Is each behavior carried by its own components? | Agreement has a **dedicated head, L6.H4 (selectivity 1.00)**; induction (0.75) and factual recall (0.52) are diffuse. MLP 0 dominates all three. | Exp 7 |
+| When do the behaviors appear during pretraining? | Different times, different shapes: agreement switches on at step ~1 000, induction climbs from ~1 000, factual recall is *actively wrong* at steps 128–512 first. **The final checkpoint is not the best one** for two of three behaviors. | Exp 8 |
+| Why did the edit fail on GPT-2? | Not a GPT-2 property — a **hyperparameter–scale mismatch**. Its residual norm at the edited layer is 75 vs. Pythia's 13–19, so the absolute `edit_kl_weight` penalty crushes δ to 2.76 instead of the ~100 needed. At `edit_kl_weight=0.01` GPT-2 edits succeed. | Exp 10 |
+| Is "generalization = 0.00" a property of the method? | No — it was suppressed by that same penalty. Pooled generalization rises 0.167 → 0.611 as the penalty falls, while top-1 preservation falls 0.944 → 0.000: a real trade-off the single committed configuration had hidden. | Exp 10 |
+
 ## Preliminary results
 
 From the committed run (pythia-160m, greedy, seed 0 — full detail in
@@ -157,13 +182,19 @@ From the committed run (pythia-160m, greedy, seed 0 — full detail in
 
 ## Known issues and limitations
 
-1. **Causal tracing picks an unreliable edit layer.** For *The Eiffel Tower* the traced peak
-   (layer 6) yields efficacy 0.00, while forcing layer 5 succeeds. The tracing signal at the
-   subject's last token is noisy in a 12-layer model; a window over several layers (as in the
-   original ROME) is the planned fix.
-2. **No generalization.** Identity-covariance is used in place of ROME's corpus-estimated
-   second-moment matrix C (see [`models/editing.py`](models/editing.py)), which is the most likely
-   reason paraphrases do not inherit the edit.
+1. **Causal tracing picks an unreliable edit layer — but the layer barely matters.** For *The
+   Eiffel Tower* the traced peak (layer 6) yields efficacy 0.00 while layer 5 succeeds. Sweeping
+   every layer (Exp 6) shows this is an isolated dead layer, not a depth effect: 8 of 12 layers
+   work for that target. The multi-layer tracing window planned as the fix was implemented
+   (`best_edit_layer(..., window=w)`) and measured — it selects *worse* layers than the raw
+   argmax (efficacy 0.93 → 0.73), so `edit_layer_window` stays 1. Over 5 tracing seeds the raw
+   rule lands on a working layer 14 times out of 15.
+2. **Generalization was suppressed by a hyperparameter, not by the method.** The committed run's
+   0.00 generalization comes from `edit_kl_weight = 0.0625`; pooled over three models it rises to
+   0.611 as that penalty goes to zero, at the cost of all neighbourhood preservation (Exp 10).
+   The identity-covariance simplification (used in place of ROME's corpus-estimated second-moment
+   matrix C, see [`models/editing.py`](models/editing.py)) remains a real limitation on top of
+   that, but it is no longer the leading explanation.
 3. **`specificity` under-reports.** It checks whether a neighbouring fact's original answer still
    appears in the generation, so it scores 0 when the base model never knew that fact.
    `specificity_pred_preserved` (top-1 unchanged before vs. after) is the fairer companion metric
@@ -172,9 +203,11 @@ From the committed run (pythia-160m, greedy, seed 0 — full detail in
    induction prompts like `applebanana apple` the true continuation is `ban`/`banana` with no
    leading space. The comparison stays fair (both alternatives are scored the same way) but the
    absolute induction numbers are pessimistic.
-5. **Small scale.** 48 prompts and 3 edit targets: enough to demonstrate the system end to end,
-   not enough for statistical claims. Pythia-410m, GPT-2 replication, and the checkpoint analysis
-   (RQ3) are not run yet.
+5. **Small scale.** 48 prompts and 3 edit targets — against the 300–500 prompts and 20–40 targets
+   the proposal projected. Enough to demonstrate the system end to end and to support the
+   qualitative claims above, not enough for statistical ones: a single edit flipping changes a
+   3-target mean by 0.33. Pythia-410m, the GPT-2 control, and the checkpoint analysis (RQ4) *have*
+   now been run (Exp 5, 8, 9); scaling the prompt set is the remaining gap.
 6. **Edit metrics are sensitive to the floating-point environment.** Running the identical
    pipeline in the Docker container reproduced every generation and top-1 prediction of the native
    Windows run, but two binary edit scores flipped (*Mona Lisa* generalization 0.00 → 0.50,
@@ -209,10 +242,12 @@ black-box-lm/
 │   └── loaders.py  preprocess.py  build_suites.py
 ├── configs/model_config.yaml   # every hyperparameter, one file
 ├── outputs/                # generated samples, tables, figures, run record (committed)
+│   └── study/              #   the six extended experiments behind the report (committed)
 ├── notebooks/              # demo_pipeline.ipynb — the pipeline stage by stage
 ├── experiments/            # per-experiment notebooks (01_baseline, 04_editing_and_generation)
 ├── scripts/                # headless per-experiment entry points
 ├── docs/                   # proposal, literature review, benchmarking, model docs
+│   └── report/             #   technical report source + one-command DOCX/PDF build
 ├── tests/                  # pytest — fast suite runs without torch
 ├── Dockerfile  .dockerignore
 ├── requirements.txt  environment.yml  pyproject.toml
@@ -255,6 +290,11 @@ tests skip automatically when torch is absent.
 
 ## Documentation
 
+- [Technical report](docs/report/technical_report.md) and
+  [presentation](docs/report/presentation.md) — the written study and the talk; build the
+  submitted PDF/PPTX with `python docs/report/build_report.py` and `build_slides.py`
+  (see [docs/report/README.md](docs/report/README.md))
+- [Extended study results](outputs/study/README.md) — every number the report cites
 - [Generated samples and results](outputs/README.md)
 - [Proposal (summary)](docs/proposal.md) · full DOCX in [`docs/`](docs)
 - [Methods & literature review](docs/methods_and_literature_review.md)

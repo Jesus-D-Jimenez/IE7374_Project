@@ -27,6 +27,7 @@ edit_lr: 0.5                 # Adam LR for the v* optimization
 edit_steps: 25               # optimization steps
 edit_kl_weight: 0.0625       # L2 penalty on the injected delta (keeps the edit small)
 edit_layer: auto             # auto = pick the causal-trace peak at the subject's last token
+edit_layer_window: 1         # layers averaged before that peak is taken (1 = raw per-layer argmax)
 
 # --- Generation / evaluation -----------------------------------------------
 gen_max_new_tokens: 30

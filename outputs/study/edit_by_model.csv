@@ -1,0 +1,10 @@
+model,subject,true,new,efficacy,generalization,specificity,specificity_pred_preserved,fluency_before,fluency_after,layer
+gpt2,The Eiffel Tower,Paris,Rome,0.0,0.0,0.5,1.0,4.927,4.927,7
+gpt2,Mount Everest,Nepal,Canada,0.0,0.0,0.5,1.0,4.835,4.808,0
+gpt2,The Mona Lisa,Leonardo,Rembrandt,0.0,0.0,0.0,1.0,4.661,4.486,3
+pythia-160m,The Eiffel Tower,Paris,Rome,0.0,0.0,0.5,0.5,4.514,4.578,6
+pythia-160m,Mount Everest,Nepal,Canada,1.0,0.0,0.5,1.0,4.405,4.561,1
+pythia-160m,The Mona Lisa,Leonardo,Rembrandt,1.0,0.0,0.0,1.0,4.352,4.432,4
+pythia-410m,The Eiffel Tower,Paris,Rome,1.0,0.5,0.5,1.0,4.977,4.962,9
+pythia-410m,Mount Everest,Nepal,Canada,1.0,0.5,1.0,1.0,4.855,4.979,8
+pythia-410m,The Mona Lisa,Leonardo,Rembrandt,1.0,0.5,0.0,1.0,4.581,4.381,7

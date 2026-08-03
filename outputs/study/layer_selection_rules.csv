@@ -1,0 +1,4 @@
+window,mean_efficacy,mean_generalization,mean_top1_preserved,n_distinct_layers
+1,0.933,0.033,0.8,7
+3,0.733,0.167,0.5,4
+5,0.8,0.167,0.667,5
