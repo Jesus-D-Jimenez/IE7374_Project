@@ -7,6 +7,7 @@ they can be regenerated from source and reviewed as diffs rather than binaries.
 |---|---|---|
 | [`technical_report.md`](technical_report.md) | `python docs/report/build_report.py` | `Group25_TechnicalReport.docx` + `.pdf` (10 pages) |
 | [`presentation.md`](presentation.md) | `python docs/report/build_slides.py` | `Group25_Presentation.pptx` + `.pdf` (20 slides) |
+| [`presentation_script.md`](presentation_script.md) | `python docs/report/time_script.py` | the read-aloud narration, timed slide by slide |
 | the talk, recorded | — | `Group25_Presentation.mpeg` (max 10 min) |
 
 The video is the one deliverable no script produces. Record the deck being presented — PowerPoint's
