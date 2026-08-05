@@ -2,22 +2,31 @@
 
     python scripts/package_submission.py
 
-The archive contains the three required deliverables at the top level (report PDF, presentation,
-GitHub link) plus a clean copy of the repository underneath:
+Every required component sits at the top level under the assignment's naming convention, with a
+clean copy of the repository underneath:
 
     Group25_FinalProject.zip
-    ├── Group25_Technical_Report.pdf
+    ├── Group25_TechnicalReport.pdf      (+ .docx source-of-record)
     ├── Group25_Presentation.pptx
     ├── Group25_Presentation.pdf
+    ├── Group25_Presentation.mpeg        <- recorded separately; see --video
     ├── GITHUB_REPOSITORY.txt
-    └── IE7374_Project/          <- every git-tracked file
+    └── IE7374_Project/                  <- every git-tracked file
 
 "Every git-tracked file" is the definition used for the repository copy, so whatever the working
 tree ignores (virtualenvs, caches, heavy `results/` artifacts, the binary edit tensors) is
 excluded automatically and the archive matches what a reviewer would clone.
 
+The video cannot be generated here — record the talk, then point this script at the file:
+
+    python scripts/package_submission.py --video path/to/recording.mp4
+
+It is copied in under the required name. Without `--video` the archive is still built and the
+script warns that the video component is missing.
+
 Usage:
     python scripts/package_submission.py
+    python scripts/package_submission.py --video ~/Videos/final.mp4
     python scripts/package_submission.py --output-dir .. --name Group25_FinalProject
 """
 from __future__ import annotations
@@ -35,13 +44,16 @@ REPO_URL = "https://github.com/Jesus-D-Jimenez/IE7374_Project"
 REPO_DIR_IN_ZIP = "IE7374_Project"
 REPORT_DIR = os.path.join("docs", "report")
 
-# (path in the repo, name at the top level of the archive) — the graded deliverables.
+# (path in the repo, name at the top level of the archive) — the graded deliverables, named
+# exactly as the assignment requires.
 DELIVERABLES = [
-    (os.path.join(REPORT_DIR, "Group25_Technical_Report.pdf"), "Group25_Technical_Report.pdf"),
-    (os.path.join(REPORT_DIR, "Group25_Technical_Report.docx"), "Group25_Technical_Report.docx"),
+    (os.path.join(REPORT_DIR, "Group25_TechnicalReport.pdf"), "Group25_TechnicalReport.pdf"),
+    (os.path.join(REPORT_DIR, "Group25_TechnicalReport.docx"), "Group25_TechnicalReport.docx"),
     (os.path.join(REPORT_DIR, "Group25_Presentation.pptx"), "Group25_Presentation.pptx"),
     (os.path.join(REPORT_DIR, "Group25_Presentation.pdf"), "Group25_Presentation.pdf"),
 ]
+
+VIDEO_NAME = "Group25_Presentation.mpeg"
 
 GITHUB_NOTE = f"""IE7374 Generative AI - Final Project (Milestone 5)
 Group 25 - Jesus D. Jimenez Ballestas
@@ -77,6 +89,8 @@ def main() -> int:
                     help="where to write the archive (default: the repository's parent)")
     ap.add_argument("--name", default="Group25_FinalProject",
                     help="archive name without the .zip extension")
+    ap.add_argument("--video", default=None,
+                    help=f"recorded presentation to include as {VIDEO_NAME} (max 10 minutes)")
     args = ap.parse_args()
 
     log = get_logger("package")
@@ -92,6 +106,11 @@ def main() -> int:
                   "python docs/report/build_slides.py")
         return 1
 
+    video = os.path.abspath(args.video) if args.video else None
+    if video and not os.path.exists(video):
+        log.error("video not found: %s", video)
+        return 1
+
     files = tracked_files()
     log.info("%d tracked files -> %s/", len(files), REPO_DIR_IN_ZIP)
 
@@ -99,6 +118,14 @@ def main() -> int:
         for src, arcname in DELIVERABLES:
             zf.write(os.path.join(REPO_ROOT, src), arcname)
             log.info("+ %s", arcname)
+        if video:
+            zf.write(video, VIDEO_NAME)
+            log.info("+ %s (%.1f MB, from %s)", VIDEO_NAME,
+                     os.path.getsize(video) / 1e6, video)
+            if os.path.splitext(video)[1].lower() not in (".mpeg", ".mpg"):
+                log.warning("the source is %s — it is stored under the required .mpeg name but "
+                            "the container is unchanged; transcode first if that matters",
+                            os.path.splitext(video)[1])
         zf.writestr("GITHUB_REPOSITORY.txt", GITHUB_NOTE)
         log.info("+ GITHUB_REPOSITORY.txt")
         for rel in files:
@@ -108,7 +135,10 @@ def main() -> int:
 
     size_mb = os.path.getsize(archive) / 1e6
     log.info("wrote %s (%.1f MB, %d entries)", archive, size_mb,
-             len(files) + len(DELIVERABLES) + 1)
+             len(files) + len(DELIVERABLES) + (1 if video else 0) + 1)
+    if not video:
+        log.warning("no %s in the archive — record the talk (max 10 min), then re-run with "
+                    "--video <file>", VIDEO_NAME)
     return 0
 
 

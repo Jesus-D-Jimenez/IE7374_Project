@@ -287,8 +287,9 @@ tests skip automatically when torch is absent.
 | Evaluation & metrics | [`models/metrics.py`](models/metrics.py) |
 | Documentation & reproducibility | this README · [`outputs/README.md`](outputs/README.md) · [`docs/`](docs) · Dockerfile · tests |
 | Container | [`Dockerfile`](Dockerfile) |
-| Technical report (8–10 pages) | [`docs/report/technical_report.md`](docs/report/technical_report.md) → `Group25_Technical_Report.pdf` |
-| Presentation (10–15 min) | [`docs/report/presentation.md`](docs/report/presentation.md) → `Group25_Presentation.pptx` |
+| Technical report (8–10 pages) | [`docs/report/technical_report.md`](docs/report/technical_report.md) → `Group25_TechnicalReport.pdf` |
+| Presentation slides | [`docs/report/presentation.md`](docs/report/presentation.md) → `Group25_Presentation.pptx` |
+| Presentation video (≤10 min) | recorded from the deck → `Group25_Presentation.mpeg` (`--video`) |
 | Submission archive | `python scripts/package_submission.py` → `Group25_FinalProject.zip` |
 
 ## Documentation

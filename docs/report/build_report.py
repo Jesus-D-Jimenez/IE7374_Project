@@ -2,7 +2,7 @@
 
     python docs/report/build_report.py
 
-Stage 1 (pandoc) renders `technical_report.md` into `Group25_Technical_Report.docx`, using a
+Stage 1 (pandoc) renders `technical_report.md` into `Group25_TechnicalReport.docx`, using a
 reference document generated here so the output meets the assignment's formatting rules
 (Times New Roman, 11 pt body, 0.9-inch margins, numbered figure/table captions come from the
 Markdown itself).
@@ -28,8 +28,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(HERE))
 SOURCE = os.path.join(HERE, "technical_report.md")
 REFERENCE = os.path.join(HERE, "reference.docx")
-DOCX = os.path.join(HERE, "Group25_Technical_Report.docx")
-PDF = os.path.join(HERE, "Group25_Technical_Report.pdf")
+DOCX = os.path.join(HERE, "Group25_TechnicalReport.docx")
+PDF = os.path.join(HERE, "Group25_TechnicalReport.pdf")
 
 BODY_FONT = "Times New Roman"
 BODY_SIZE_PT = 11

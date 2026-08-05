@@ -5,8 +5,20 @@ they can be regenerated from source and reviewed as diffs rather than binaries.
 
 | Source | Build | Output |
 |---|---|---|
-| [`technical_report.md`](technical_report.md) | `python docs/report/build_report.py` | `Group25_Technical_Report.docx` + `.pdf` (10 pages) |
+| [`technical_report.md`](technical_report.md) | `python docs/report/build_report.py` | `Group25_TechnicalReport.docx` + `.pdf` (10 pages) |
 | [`presentation.md`](presentation.md) | `python docs/report/build_slides.py` | `Group25_Presentation.pptx` + `.pdf` (20 slides) |
+| the talk, recorded | — | `Group25_Presentation.mpeg` (max 10 min) |
+
+The video is the one deliverable no script produces. Record the deck being presented — PowerPoint's
+*Slide Show → Record* exports video directly — then fold it into the submission archive:
+
+```bash
+python scripts/package_submission.py --video path/to/recording.mp4
+```
+
+It is stored under the required name; the packaging script warns if the source container is not
+actually MPEG. At 10 minutes across 20 slides the budget is ~30 s per slide, so the recording
+should follow the speaker notes rather than read the slides.
 
 ## Requirements
 
