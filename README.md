@@ -290,7 +290,7 @@ tests skip automatically when torch is absent.
 | Technical report (8–10 pages) | [`docs/report/technical_report.md`](docs/report/technical_report.md) → `Group25_TechnicalReport.pdf` |
 | Presentation slides | [`docs/report/presentation.md`](docs/report/presentation.md) → `Group25_Presentation.pptx` |
 | Presentation video (≤10 min) | recorded from the deck → `Group25_Presentation.mpeg` (`--video`) |
-| Submission archive | `python scripts/package_submission.py` → `Group25_FinalProject.zip` |
+| Submission archive | `python scripts/package_submission.py --video <file>` → `Group25_FinalProject.zip` (report + slides + video; this repository is submitted as a URL) |
 
 ## Documentation
 

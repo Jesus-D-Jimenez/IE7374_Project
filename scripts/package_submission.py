@@ -2,20 +2,14 @@
 
     python scripts/package_submission.py
 
-Every required component sits at the top level under the assignment's naming convention, with a
-clean copy of the repository underneath:
+The archive holds exactly the three graded files, named as the assignment requires:
 
     Group25_FinalProject.zip
-    ├── Group25_TechnicalReport.pdf      (+ .docx source-of-record)
+    ├── Group25_TechnicalReport.pdf
     ├── Group25_Presentation.pptx
-    ├── Group25_Presentation.pdf
-    ├── Group25_Presentation.mpeg        <- recorded separately; see --video
-    ├── GITHUB_REPOSITORY.txt
-    └── IE7374_Project/                  <- every git-tracked file
+    └── Group25_Presentation.mpeg        <- recorded separately; see --video
 
-"Every git-tracked file" is the definition used for the repository copy, so whatever the working
-tree ignores (virtualenvs, caches, heavy `results/` artifacts, the binary edit tensors) is
-excluded automatically and the archive matches what a reviewer would clone.
+The repository itself is *not* bundled — it is submitted as a GitHub URL.
 
 The video cannot be generated here — record the talk, then point this script at the file:
 
@@ -27,7 +21,7 @@ script warns that the video component is missing.
 Usage:
     python scripts/package_submission.py
     python scripts/package_submission.py --video ~/Videos/final.mp4
-    python scripts/package_submission.py --output-dir .. --name Group25_FinalProject
+    python scripts/package_submission.py --include-repo      # add a clean copy of the repo
 """
 from __future__ import annotations
 
@@ -45,12 +39,10 @@ REPO_DIR_IN_ZIP = "IE7374_Project"
 REPORT_DIR = os.path.join("docs", "report")
 
 # (path in the repo, name at the top level of the archive) — the graded deliverables, named
-# exactly as the assignment requires.
+# exactly as the assignment requires. The repository is submitted as a URL, not bundled here.
 DELIVERABLES = [
     (os.path.join(REPORT_DIR, "Group25_TechnicalReport.pdf"), "Group25_TechnicalReport.pdf"),
-    (os.path.join(REPORT_DIR, "Group25_TechnicalReport.docx"), "Group25_TechnicalReport.docx"),
     (os.path.join(REPORT_DIR, "Group25_Presentation.pptx"), "Group25_Presentation.pptx"),
-    (os.path.join(REPORT_DIR, "Group25_Presentation.pdf"), "Group25_Presentation.pdf"),
 ]
 
 VIDEO_NAME = "Group25_Presentation.mpeg"
@@ -91,6 +83,9 @@ def main() -> int:
                     help="archive name without the .zip extension")
     ap.add_argument("--video", default=None,
                     help=f"recorded presentation to include as {VIDEO_NAME} (max 10 minutes)")
+    ap.add_argument("--include-repo", action="store_true", dest="include_repo",
+                    help=f"also bundle every git-tracked file under {REPO_DIR_IN_ZIP}/ "
+                         "(off by default: the repository is submitted as a URL)")
     args = ap.parse_args()
 
     log = get_logger("package")
@@ -111,8 +106,9 @@ def main() -> int:
         log.error("video not found: %s", video)
         return 1
 
-    files = tracked_files()
-    log.info("%d tracked files -> %s/", len(files), REPO_DIR_IN_ZIP)
+    files = tracked_files() if args.include_repo else []
+    if files:
+        log.info("%d tracked files -> %s/", len(files), REPO_DIR_IN_ZIP)
 
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as zf:
         for src, arcname in DELIVERABLES:
@@ -126,16 +122,19 @@ def main() -> int:
                 log.warning("the source is %s — it is stored under the required .mpeg name but "
                             "the container is unchanged; transcode first if that matters",
                             os.path.splitext(video)[1])
-        zf.writestr("GITHUB_REPOSITORY.txt", GITHUB_NOTE)
-        log.info("+ GITHUB_REPOSITORY.txt")
-        for rel in files:
-            source = os.path.join(REPO_ROOT, rel)
-            if os.path.exists(source):                 # a tracked-but-deleted file is not fatal
-                zf.write(source, f"{REPO_DIR_IN_ZIP}/{rel}")
+        if files:
+            zf.writestr("GITHUB_REPOSITORY.txt", GITHUB_NOTE)
+            log.info("+ GITHUB_REPOSITORY.txt")
+            for rel in files:
+                source = os.path.join(REPO_ROOT, rel)
+                if os.path.exists(source):             # a tracked-but-deleted file is not fatal
+                    zf.write(source, f"{REPO_DIR_IN_ZIP}/{rel}")
 
     size_mb = os.path.getsize(archive) / 1e6
     log.info("wrote %s (%.1f MB, %d entries)", archive, size_mb,
-             len(files) + len(DELIVERABLES) + (1 if video else 0) + 1)
+             len(files) + len(DELIVERABLES) + (1 if video else 0) + (1 if files else 0))
+    if not args.include_repo:
+        log.info("repository not bundled — submit the URL: %s", REPO_URL)
     if not video:
         log.warning("no %s in the archive — record the talk (max 10 min), then re-run with "
                     "--video <file>", VIDEO_NAME)
