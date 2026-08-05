@@ -1,280 +1,202 @@
 # Presentation script — Group 25, "Opening the Black Box"
 
-Read-aloud narration for the 20-slide deck. **1,427 spoken words**, and the per-slide timestamps
-below are computed from the actual word counts, not estimated — re-run
+Read-aloud narration for the 20-slide deck, written to sound like me talking, not like a paper
+being read out loud. **828 words — 5:31 at a normal reading pace, 5:10 if you're brisk.**
+Timestamps come from the actual word counts, so re-run
 `python docs/report/time_script.py --write` after any edit and they update themselves.
-
-| Pace | Full script | Dropping the two *[optional cut]* paragraphs |
-|---|---|---|
-| 140 wpm (slow, deliberate) | 10:11 — **over the cap** | 9:43 |
-| 150 wpm (normal reading) | 9:30 | 9:04 |
-| 160 wpm (brisk) | 8:55 | 8:30 |
 
 **Delivery notes**
 
-* Aim for 150 wpm or a touch faster. If you read deliberately, drop the two paragraphs marked
-  *[optional cut]* (slides 7 and 13) and you stay under 10 minutes at any pace.
-* Say the **bolded numbers** exactly — they are the evidence the "clear explanations" band wants.
-* On every figure slide, name the axes before the finding: "what you're looking at is X against
-  Y," then "and the thing to notice is…". That habit is most of the difference between *showing*
-  a visualization and *communicating* one.
-* Slides 15 and 17 carry the strongest result — slow down there. Speed up on 3, 4 and 9.
-* Don't read the bullets. The bullets are for the viewer; this is for you.
-* Record with PowerPoint's *Slide Show → Record*; it exports video directly. Then
-  `python scripts/package_submission.py --video <file>` folds it into the submission ZIP.
+* About 16 seconds a slide. Keep moving.
+* Say the **bolded numbers** exactly. Everything else you can put in your own words; this is a
+  script to know, not to recite.
+* On the figure slides (6, 10, 12, 16) say what the axes are *before* you say what the result is.
+  That habit is most of the difference between showing a chart and explaining one.
+* Slides 15 and 17 are the best part of the project. Slow down there.
+* Don't read the bullets out loud — the viewer can already see them.
+* Record with PowerPoint's *Slide Show → Record*, then
+  `python scripts/package_submission.py --video <file>` puts it in the submission ZIP.
 
 ---
 
-## Slide 1 — Title *(0:00–0:19)*
+## Slide 1 — Title *(0:00–0:14)*
 
-I'm Jesus Jimenez, and this is my final project: "Opening the Black Box."
+Hey, I'm Jesus. My project is Opening the Black Box.
 
-The one-sentence version: I take a small language model apart, find the pieces responsible for
-specific behaviors, and then use those pieces to change what the model writes — by editing exactly
-one weight matrix.
+I took a small language model apart, found the parts that do specific things, and edited one of
+them to change what the model writes.
 
-## Slide 2 — The problem *(0:19–0:57)*
+## Slide 2 — The problem *(0:14–0:36)*
 
-We normally treat a language model as a black box. Text in, text out, and the only handle is the
-prompt.
+A language model is basically a black box — text in, text out, and all you control is the prompt.
 
-That's expensive. When a model states a fact that's wrong, the options are retraining or
-fine-tuning — both change the entire network to correct one thing.
+So when it says something wrong, your only options are retraining or fine-tuning, and both change
+the whole network to fix one fact. I wanted to find where one fact lives and change just that.
 
-So I asked the opposite question. Taking **Pythia-160m**, a **162-million** parameter open model:
-can I find *where* a behavior lives and change it surgically? Nothing is trained or fine-tuned —
-the only weight change anywhere is one rank-one update, and it runs on a laptop CPU in a minute.
+## Slide 3 — Four research questions *(0:36–0:54)*
 
-## Slide 3 — Four research questions *(0:57–1:27)*
+Four questions. Which heads and MLPs cause each behavior. Whether turning them off breaks *only*
+that behavior. Whether I can use that to edit a fact so the model generates it. And since Pythia
+saves **154 checkpoints** while training — when each behavior shows up.
 
-**One:** which attention heads and MLPs causally drive subject-verb agreement, factual recall,
-and induction. **Two:** when I switch those off, does performance drop *selectively* — selectivity
-being what separates a real mechanism from a coincidence.
+## Slide 4 — Data *(0:54–1:13)*
 
-**Three**, the generative core: can that localization edit the model so it *generates* text
-consistent with a new fact, and does that text survive the standard evaluation?
+I wrote the data myself. **48 prompts**, each with a right answer and a wrong answer that differ
+in just the thing I'm testing — "the keys on the table" should be "are," not "is." Plus three
+facts to edit.
 
-**Four:** Pythia publishes **154 checkpoints** from training — when does each behavior appear?
+48 is small, and that's my biggest limitation.
 
-## Slide 4 — Data *(1:27–1:58)*
+## Slide 5 — Method *(1:13–1:31)*
 
-The data is hand-built, because the measurement needs matched pairs public benchmarks don't give
-you. **48 prompts**, each with a correct continuation and a matched incorrect one differing in
-exactly the property being tested — "the keys on the table" is followed by "are," not "is."
+Three steps. **Measure**: how much the model prefers the right answer. **Localize**: turn off one
+head at a time and see what breaks, and use causal tracing to find where a fact is stored.
+**Edit**: change one weight matrix, then score what the model actually writes.
 
-Plus **three edit targets**, each with two paraphrases and two neighbouring facts that must *not*
-change. Up front: 48 prompts is small, and it's the main limitation of this work.
+## Slide 6 — Ablation heatmap *(1:31–1:48)*
 
-## Slide 5 — Method *(1:58–2:40)*
+This is every attention head. Rows are layers, columns are heads, darker red means the model
+needed that head more.
 
-Three steps.
+Look at the agreement panel on the left — one square is way darker than the rest. **Layer 6,
+head 4**.
 
-**Measure.** Every claim reduces to one number — the logit difference, the model's score for the
-correct answer minus its score for the wrong one.
+## Slide 7 — Selectivity *(1:48–2:05)*
 
-**Localize**, with three tools of increasing strength. The logit lens reads each layer.
-Zero-ablation switches a component off and measures the damage. Causal tracing corrupts the
-subject, then restores clean activations layer by layer to find where a fact is stored.
+Turning off **L6.H4** costs **2.29** on agreement and **negative 0.02** on the other two
+behaviors — basically nothing. It's not a general-purpose head, it's doing agreement
+specifically.
 
-**Edit and generate.** I optimize a vector at the subject's last token, then apply a rank-one
-update to that MLP's output matrix — this is ROME — and score the *generated text* on efficacy,
-generalization, specificity and fluency.
+Factual recall has nothing like that. Its best head scores **0.52**, because it helps with
+everything.
 
-## Slide 6 — Ablation heatmap *(2:40–3:05)*
+## Slide 8 — The edit works *(2:05–2:27)*
 
-First result. Each panel is one behavior. Rows are layers, columns are attention heads, and the
-colour is how much the logit difference drops when I switch that head off — darker red means the
-model needed it more.
+Now the editing. Same model, same prompt, and the only difference is one weight matrix.
 
-Look at the agreement panel on the left. One cell dominates: **layer 6, head 4**. Nothing like it
-in the other two panels.
+Before: "Mount Everest is located in the country of **Nepal**." After: "…the country of
+**Canada**," and then it keeps writing about the park being in Canada.
 
-## Slide 7 — Selectivity *(3:05–3:43)*
+So it's not just swapping a word — it writes around the new fact.
 
-That's the number that matters. Ablating **L6.H4** costs **2.29** logits of agreement margin, and
-on the other two behaviors it costs **negative 0.02** — nothing measurable. Selectivity **1.00**.
-A dedicated component, not a shared pathway that happens to matter.
+## Slide 9 — Three models *(2:27–2:37)*
 
-Compare factual recall at **0.52** — that same head is also worth nearly a full logit to
-agreement. That's a diffuse mechanism.
+Same edit on three models. GPT-2: **zero**, never works. Pythia-160m: **0.67**. Pythia-410m:
+**1.00**.
 
-*[optional cut]* One honest caveat: the biggest component for all three behaviors isn't a head at
-all. It's **MLP 0**, and ablating it hurts everything — which is why "largest drop" and "the
-mechanism" are different claims.
+So editing looks like it just works better on bigger models. Remember that.
 
-## Slide 8 — The edit works *(3:43–4:14)*
+## Slide 10 — Emergence figure *(2:37–2:46)*
 
-Now the generative half. Same model, same prompt, same greedy decoding — the only difference
-between these two generations is one weight matrix.
+Training step across the bottom, random weights out to the end of training, and how strong each
+behavior is going up.
 
-Before: "Mount Everest is located in the country of **Nepal**, the mountain is located in the
-Himalayas…" After: "…located in the country of **Canada**. The Mount Everest National Park is
-located in the country of Canada…"
+## Slide 11 — Three shapes *(2:46–3:07)*
 
-It doesn't just swap a word — it keeps writing coherent text *around* the new fact, at unchanged
-fluency.
+All three show up differently. Agreement jumps **13 times** between step 512 and 1,000, then it's
+done. Induction comes in slowly.
 
-## Slide 9 — Three models *(4:14–4:39)*
+Factual recall is *worse than random* early on — the model learns a city comes next before it
+learns which city. And **step 64,000 beats the final step** on two of three behaviors.
 
-That same evaluation across three models gives a tidy story. GPT-2: efficacy **zero**, the edit
-never takes. Pythia-160m: **0.67**. Pythia-410m: **1.00**, and the only one where the edit
-survives a paraphrase, at **0.50**.
+## Slide 12 — Layer sweep figure *(3:07–3:23)*
 
-The obvious conclusion is that editing works better at scale and not at all on GPT-2. Hold that
-thought — in three minutes I'll show you it's wrong.
+This is the part I like. In an earlier milestone I wrote that tracing sometimes picks a bad
+layer, and the fix is a window over several layers.
 
-## Slide 10 — Emergence figure *(4:39–4:58)*
+So I tested it — every fact at *every* layer, **36** runs.
 
-First, question four — the one thing you can only do with Pythia, because it publishes
-checkpoints from during training.
+## Slide 13 — The fix made it worse *(3:23–3:36)*
 
-Training step on the x-axis, log scale, from random initialization out to the final step
-**143,000**. Strength of each behavior on the left, accuracy on the right.
+The fix was worse. My original rule scores **0.933**; the "better" one scores **0.733**.
 
-## Slide 11 — Three shapes *(4:58–5:38)*
+So I kept the original, and now I can explain that with a number instead of a citation.
 
-Three behaviors, three completely different shapes.
+## Slide 14 — Why the layer mattered less *(3:36–3:49)*
 
-**Agreement** switches on abruptly — a **13-fold** jump between steps 512 and 1,000 — and is
-finished by step 4,000. **Induction** climbs steadily across an order of magnitude of training.
+The layer barely matters either — most early layers work. But the last three never do, because by
+layer 9 the model already picked its answer. Editing after that is too late.
 
-**Factual recall** does something I didn't expect: it's *worse than chance* around steps 128 to
-512. The model has learned that "the capital of X is" is followed by a city, and confidently picks
-the wrong one, before it learns which.
+## Slide 15 — The GPT-2 mystery *(3:49–4:20)*
 
-And at the right-hand end, for two of three behaviors, **step 64,000 beats the final step
-143,000**. The finished model is not the best model.
+Back to GPT-2. When I watched the optimization, the loss was going *up* and the vector it added
+stayed tiny — **2.76**, where Pythia gets to 6 or 7.
 
-## Slide 12 — Layer sweep figure *(5:38–6:03)*
+The penalty on that vector is a fixed number, but how big it needs to be depends on the model.
+GPT-2's activations are around **75**; Pythia's are **13**. Same penalty, way harsher.
 
-Now the part I'm most pleased with, and it starts with me doubting my own earlier write-up.
+I never actually edited GPT-2 — I squashed it. Change that setting and it gets **1.00**.
 
-An earlier milestone of mine said causal tracing sometimes picks a bad layer, and the fix is
-ROME's multi-layer window. Rather than assume that, I tested it — every target at *every* layer,
-**36** separate fits. The shaded bands are the layers tracing actually picks.
+## Slide 16 — Penalty figure *(4:20–4:28)*
 
-## Slide 13 — The fix made it worse *(6:03–6:26)*
+So I swept that setting. Penalty across the bottom, the three scores going up. Watch the red and
+green lines cross.
 
-The result: the raw rule I already had scores **0.933**. The windowed "fix" scores **0.733**. The
-proposed improvement selects *worse* layers than the thing it was meant to replace.
+## Slide 17 — A trade-off, not a property *(4:28–4:48)*
 
-*[optional cut]* So it's implemented, but it isn't the default — and this measurement is why.
-That's a decision I can defend with a number instead of a citation.
+I'd also written that edits never survive rewording, and blamed the method. Also wrong.
 
-## Slide 14 — Why the layer mattered less *(6:26–6:49)*
+Lower the penalty and generalization goes from **0.167** to **0.611**, but protecting other facts
+drops from **0.944** to **zero**. It's a trade-off, not a broken method — so I left the default
+alone and documented it.
 
-The deeper finding: layer choice barely matters. Most early layers hold the edit — for Mount
-Everest, **9 of 12**.
+## Slide 18 — What I learned *(4:48–5:06)*
 
-But the last three never work, which lines up exactly with the logit lens: by layer 9 the answer
-is already decided, so an edit arrives too late. Two different methods agreeing on where the
-decision gets made.
+You can find a behavior when it's sharp, like agreement. Editing a fact is easy; editing *only*
+that fact is hard. Models get better and worse at things while training.
 
-## Slide 15 — The GPT-2 mystery *(6:49–7:30)*
+And the big one: two of my own limitations turned out to be my own settings.
 
-Back to GPT-2, which supposedly couldn't be edited.
+## Slide 19 — Limits and next *(5:06–5:20)*
 
-When I watched the optimization, the loss was *going up*. The injected vector stalled at magnitude
-**2.76**, where Pythia reaches 6 or 7.
+Limits: 48 prompts and 3 facts, so my decimals are estimates. Next I'd scale the data up, make the
+penalty scale with the model, and add back the part of the method I simplified.
 
-Here's why. The objective penalizes that vector's size in *absolute* terms — but how big it needs
-to be depends on the residual stream you add it to, and those aren't comparable across models. At
-the edited layer GPT-2's residual norm is **75**; Pythia's is **13**. Six times, and squared.
+## Slide 20 — Close *(5:20–5:31)*
 
-GPT-2's edit was never attempted — it was regularized out of existence. Loosen that one number and
-GPT-2 reaches efficacy **1.00**.
-
-## Slide 16 — Penalty figure *(7:30–7:47)*
-
-Once I swept that hyperparameter, a second thing fell out. Penalty weight on the x-axis, the three
-quality scores on the y-axis, pooled across all three models. On the right, how large an edit each
-setting permits.
-
-Watch the red and green lines cross.
-
-## Slide 17 — A trade-off, not a property *(7:47–8:19)*
-
-My earlier write-up reported generalization of **zero** — edits never surviving a paraphrase — and
-blamed a simplification in the method.
-
-Also wrong. As the penalty falls, generalization climbs from **0.167** to **0.611** while
-preservation of neighbouring facts collapses from **0.944** to **zero**. Not a property of the
-method — one end of a trade-off a single configuration couldn't reveal.
-
-I left the committed default alone, so the trade-off is documented rather than quietly re-tuned
-into a better-looking number.
-
-## Slide 18 — What I learned *(8:19–8:47)*
-
-Localization succeeds where behavior is sharp. Editing's hard part is specificity, not efficacy —
-anyone can change a fact; changing *only* that fact is the problem. Behaviors have training
-histories, and the last checkpoint isn't the best one.
-
-And the one I'd take forward: reported failures deserve the scrutiny we give reported successes.
-Two of my own documented limitations dissolved under one sweep, and both had a plausible,
-well-cited explanation attached.
-
-## Slide 19 — Limits and next *(8:47–9:14)*
-
-Honestly: 48 prompts and 3 edit targets, so every edit metric is a mean over three binary
-outcomes. The qualitative claims are solid; the decimals are estimates.
-
-Next: scale the evaluation set so those become error bars; make the penalty *scale-relative*,
-which predicts the three per-model curves collapse onto one — a testable claim, not a wish; then
-restore the full covariance term now the confound is gone.
-
-## Slide 20 — Close *(9:14–9:29)*
-
-All of it reproduces from one command in about a minute on CPU, with 38 tests, a container, and
-every figure in this talk regenerating from the repository.
-
-Thank you — happy to take questions.
+All of it reruns with one command in about a minute, there are 38 tests, and it's all on GitHub.
+Thanks — happy to take questions.
 
 ---
 
 # Q&A preparation
 
-The rubric's top band asks for questions answered *thoughtfully, demonstrating deep understanding*.
-These are the questions this work invites. Lead with a number, then the reasoning.
+Not part of the five minutes. Lead with a number, then the reason, and don't get defensive about
+the small dataset — owning it reads better than dodging it.
 
-**"Isn't 48 prompts and 3 edit targets too small to conclude anything?"**
-For the decimals, yes — one edit flipping moves a 3-target mean by 0.33, and the report says so.
-What sample size can't explain away are the qualitative results: L6.H4's selectivity is a
-2.29-versus-negative-0.02 gap, and the emergence ordering holds across 48 prompts at eleven
-checkpoints. Scaling the prompt set is my first next step precisely because it turns the weak
-claims into measurable ones without needing a new method.
+**"Isn't 48 prompts and 3 edit targets too small?"**
+For the decimals, yeah. One edit flipping moves a 3-target average by 0.33, and I say that in the
+report. What the size *doesn't* explain away is the big gaps — L6.H4 is 2.29 versus negative 0.02,
+and the training-order result holds across all 48 prompts at eleven checkpoints. Scaling the data
+is my first next step for exactly that reason.
 
-**"Why not just fine-tune to fix the fact?"**
-Fine-tuning updates every weight for one correction, needs data, and gives no guarantee about what
-else moved. The rank-one edit touches one matrix, takes 25 steps, and comes with a specificity
-metric that tells you what it broke. Though my own results show that specificity guarantee is the
-weak part — which is the honest counterargument to my approach.
+**"Why not just fine-tune the model to fix the fact?"**
+Fine-tuning changes every weight for one correction, needs training data, and doesn't tell you
+what else moved. The edit I use touches one matrix, takes 25 steps, and comes with a metric for
+what it broke. Although honestly, my own results show that metric is the weak part.
 
-**"How do you know L6.H4 is real and not an artifact of your prompts?"**
-Two things: it's an *intervention*, not a correlation — I switch the head off and the behavior
-degrades — and it's measured against a control, the same ablation on the other two behaviors
-costing nothing. That said, it's four prompts per behavior, so I'd want the larger suite before
-calling it "the agreement head" in print.
+**"How do you know L6.H4 is real and not just your prompts?"**
+Two reasons. It's an intervention, not a correlation — I turn the head off and the behavior gets
+worse. And I checked it against a control: the same head costs nothing on the other two behaviors.
+But it's four prompts per behavior, so I wouldn't call it "the agreement head" in a paper yet.
 
-**"n-gram entropy is a weak fluency metric."**
-It is. It catches degeneration and repetition, which is what a bad edit usually produces, and it's
-model-free so the edited model can't game it. But it won't catch subtle quality loss — perplexity
-under an independent reference model would be stronger.
+**"Your fluency metric is just n-gram entropy."**
+Right, and it's the weakest metric I have. It catches repetition and gibberish, which is what
+broken edits usually produce, and the model can't game it. But it won't catch subtle quality loss.
+Perplexity under a different model would be better.
 
-**"If a smaller penalty gives better edits, why not change the default?"**
-Because "better" depends which column you read. Dropping the penalty raises generalization to
-0.611 and takes neighbourhood preservation to zero — the edit starts bleeding into unrelated
-facts. No setting in my sweep is simultaneously strong, general and harmless, so I left the
-default at the conservative end and documented the trade-off instead of picking the number that
-flatters the report.
+**"If a lower penalty gives better edits, why not change the default?"**
+Because "better" depends which column you look at. Lower penalty gets generalization up to 0.611
+but takes protection of other facts to zero — the edit starts leaking into unrelated facts.
+Nothing in my sweep was strong, general, *and* safe at the same time, so I left the default at the
+safe end and wrote up the trade-off instead of picking the number that looks best.
 
 **"What would you do differently?"**
-Sweep the hyperparameters *before* writing any explanation for a failure. Both limitations I had
-to retract were explanations I reached for instead of running a control that cost twenty minutes
-of compute.
+Test the hyperparameters before writing an explanation for a failure. Both things I had to take
+back were explanations I came up with instead of running a check that took twenty minutes.
 
-**"Does this scale to a real model?"**
-The method does — ROME was demonstrated on GPT-J, about a thousand times larger. What doesn't
-transfer is the configuration, which is exactly what the GPT-2 result is about: the same absolute
-penalty means different things in models with different residual-stream norms. Scale-relative
-regularization is the first thing I'd test.
+**"Does this work on a real, large model?"**
+The method does — ROME was done on GPT-J, about a thousand times bigger. What doesn't carry over
+is the settings, which is the whole point of my GPT-2 result: the same fixed penalty means
+different things in models with different activation sizes. Making it scale-relative is the first
+thing I'd try.
