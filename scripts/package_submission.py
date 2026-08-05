@@ -2,14 +2,15 @@
 
     python scripts/package_submission.py
 
-The archive holds exactly the three graded files, named as the assignment requires:
+The archive holds the graded files, named as the assignment requires:
 
     Group25_FinalProject.zip
     ├── Group25_TechnicalReport.pdf
     ├── Group25_Presentation.pptx
-    └── Group25_Presentation.mpeg        <- recorded separately; see --video
+    ├── Group25_Presentation.mpeg                 <- recorded separately; see --video
+    └── Group25_Jesus_Jimenez_Github_URL.docx     <- the repository link
 
-The repository itself is *not* bundled — it is submitted as a GitHub URL.
+The repository is *not* bundled as a folder — the link document above stands in for it.
 
 The video cannot be generated here — record the talk, then point this script at the file:
 
@@ -43,6 +44,8 @@ REPORT_DIR = os.path.join("docs", "report")
 DELIVERABLES = [
     (os.path.join(REPORT_DIR, "Group25_TechnicalReport.pdf"), "Group25_TechnicalReport.pdf"),
     (os.path.join(REPORT_DIR, "Group25_Presentation.pptx"), "Group25_Presentation.pptx"),
+    (os.path.join(REPORT_DIR, "Group25_Jesus_Jimenez_Github_URL.docx"),
+     "Group25_Jesus_Jimenez_Github_URL.docx"),
 ]
 
 VIDEO_NAME = "Group25_Presentation.mpeg"
